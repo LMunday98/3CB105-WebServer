@@ -2,6 +2,6 @@
 include 'dbOps.php';
 
 $ops = new Ops();
-$ops->echoTable("Users");
-$ops->echoTable("Data");
+$ops->echo_table("Users");
+$ops->echo_table("Data");
 ?>
