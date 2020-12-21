@@ -3,7 +3,7 @@ include 'config.php';
 
 class Ops {
 
-  public $connection;
+  private $connection;
 
   function __construct() {
     $this->connection = establish_connection();
