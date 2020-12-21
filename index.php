@@ -1,15 +1,9 @@
 <?php
-//$mysqli = new mysqli("<IP of Server A>", "user", "password", "database");
-$conn = new mysqli("192.168.0.185:3306", "test", "", "3CB105");
+include 'config.php';
+
+$conn = getConnection();
 
 
-
-
-// Check connection
-if ($conn -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
 
 $sql = "SELECT * FROM Users";
 $result = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
