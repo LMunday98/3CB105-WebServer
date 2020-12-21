@@ -49,37 +49,34 @@ class Ops {
     }
   }
 
+  function format_str($str) {
+    return mysqli_real_escape_string($this->connection,$str);
+  }
+
   function login() {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       $db = $this->connection;
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+      $myusername = $this->format_str($_POST['username']);
+      $mypassword = $this->format_str($_POST['password']);
 
-      $sql = "SELECT user_id FROM Users WHERE user_name = '$myusername' and password = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $search = $this->create_search("*", "Users", " WHERE user_name='" . $myusername . "' and password='" . $mypassword . "'");
+      $result = $this->search_db($search);
 
+      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       $count = mysqli_num_rows($result);
-
-      // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
         $search = $this->create_search("*", "Users", " WHERE user_name='" . $myusername . "'");
         $result = $this->search_db($search);
-        $results_array = mysqli_fetch_assoc($result);
-
-        $user_data = array();
-
-        foreach ($results_array as $field => $data) {
-          $user_data[$field] = $data;
-        }
-
+        
         $_SESSION['logged_in'] = True;
-        $_SESSION['user_data'] = $user_data;
+        $_SESSION['user_data'] = mysqli_fetch_assoc($result);
 
         header("location: test.php");
+        echo "yes";
       } else {
         header("location: index.php");
+        echo "no";
       }
     }
   }
