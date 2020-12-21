@@ -1,12 +1,46 @@
+<?php
+
+
+include("dbOps.php");
+$ops = new Ops();
+$conn = $ops->get_conn();
+session_start();
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  // username and password sent from form
+
+  $myusername = mysqli_real_escape_string($db,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+
+  $sql = "SELECT user_id FROM Users WHERE user_name = '$myusername' and password = '$mypassword'";
+  $result = mysqli_query($conn,$sql);
+  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  $active = $row['active'];
+
+  $count = mysqli_num_rows($result);
+
+  // If result matched $myusername and $mypassword, table row must be 1 row
+
+  if($count == 1) {
+     session_register("myusername");
+     $_SESSION['login_user'] = $myusername;
+
+     header("location: welcome.php");
+  }else {
+     $error = "Your Login Name or Password is invalid";
+  }
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE HTML>
-<!--
-	Identity by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Identity by HTML5 UP</title>
+		<title>FMS</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
@@ -24,41 +58,20 @@
 					<section id="main">
 						<header>
 							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
-							<h1>Jane Doe</h1>
-							<p>Senior Psychonautics Engineer</p>
+							<h1>Fish Monitoring<br>System</h1>
 						</header>
 						<hr />
-						<h2>Extra Stuff!</h2>
-						<form method="post" action="#">
+						<h2>User Login:</h2>
+						<form method="post" action="">
 							<div class="field">
-								<input type="text" name="name" id="name" placeholder="Name" />
+								<input type="text" name="username" id="username" placeholder="Username" />
 							</div>
 							<div class="field">
-								<input type="email" name="email" id="email" placeholder="Email" />
-							</div>
-							<div class="field">
-								<div class="select-wrapper">
-									<select name="department" id="department">
-										<option value="">Department</option>
-										<option value="sales">Sales</option>
-										<option value="tech">Tech Support</option>
-										<option value="null">/dev/null</option>
-									</select>
-								</div>
-							</div>
-							<div class="field">
-								<textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
-							</div>
-							<div class="field">
-								<input type="checkbox" id="human" name="human" /><label for="human">I'm a human</label>
-							</div>
-							<div class="field">
-								<label>But are you a robot?</label>
-								<input type="radio" id="robot_yes" name="robot" /><label for="robot_yes">Yes</label>
-								<input type="radio" id="robot_no" name="robot" /><label for="robot_no">No</label>
+								<input type="password" name="password" id="password" placeholder="Password" />
 							</div>
 							<ul class="actions">
-								<li><a href="#" class="button">Get Started</a></li>
+								<!--<li><a href="#" class="button">Login</a></li>-->
+								<li><input type="submit" name="submit" id="submit" placeholder="submit" /></li>
 							</ul>
 						</form>
 						<hr />
@@ -74,7 +87,7 @@
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="copyright">
-							<li>&copy; Jane Doe</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>3CB105 - Fish Monitoring System</li><li>Luke Munday</li>
 						</ul>
 					</footer>
 
