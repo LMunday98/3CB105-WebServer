@@ -44,14 +44,8 @@ class Ops {
 
   function check_login() {
     if ((!$this->is_index_page()) && (!isset($_SESSION['logged_in']))) {
-        session_unset();
-        session_destroy();
-        header("location: index.php");
+        header("location: logout.php");
         echo "not logged in";
-    } else{
-
-      $usr = $_SESSION['user_data'];
-      echo "Hello, " . $usr['first_name'] . " " . $usr['last_name'] . "!";
     }
   }
 
@@ -70,7 +64,7 @@ class Ops {
       // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
-        $search = $this->create_search("*", "Users", " WHERE user_name='" . $_SESSION['user_name'] . "'");
+        $search = $this->create_search("*", "Users", " WHERE user_name='" . $myusername . "'");
         $result = $this->search_db($search);
         $results_array = mysqli_fetch_assoc($result);
 
