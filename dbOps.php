@@ -6,8 +6,8 @@ class Ops {
   private $connection;
 
   function __construct() {
+    session_start();
     $this->connection = establish_connection();
-    $this->check_login();
   }
   function get_conn() {
     return $this->connection;
@@ -34,9 +34,23 @@ class Ops {
       return $result;
     }
 
-    function check_login() {
+    function is_index_page() {
+      $currentpage = $_SERVER['REQUEST_URI'];
+      if($currentpage=="/" || $currentpage=="/index.php" || $currentpage=="/index" || $currentpage=="" ) { return True; }
+    }
 
-      session_start();
+    function check_login() {
+      if ((!$this->is_index_page()) && (!isset($_SESSION['logged_in']))) {
+          session_unset();
+          session_destroy();
+          header("location: index.php");
+          echo "not logged in";
+      } else{
+          echo "Hello, " . $_SESSION['logged_in'];
+      }
+    }
+
+    function login() {
       if($_SERVER["REQUEST_METHOD"] == "POST") {
         $db = $this->connection;
         $myusername = mysqli_real_escape_string($db,$_POST['username']);
@@ -51,16 +65,14 @@ class Ops {
         // If result matched $myusername and $mypassword, table row must be 1 row
 
         if($count == 1) {
+           $_SESSION['logged_in'] = True;
            $_SESSION['login_user'] = $myusername;
 
            header("location: test.php");
         }else {
           header("location: index.php");
-           echo "fail";
         }
       }
-
-
     }
 }
 ?>

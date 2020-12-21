@@ -1,9 +1,8 @@
 <?php
 include 'dbOps.php';
 $ops = new Ops();
+$ops->login();
 ?>
-
-
 
 <!DOCTYPE HTML>
 <html>
@@ -55,7 +54,7 @@ $ops = new Ops();
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="copyright">
-							<li>3CB105 - Fish Monitoring System</li><li>Luke Munday</li>
+							<li>3CB105</li><li>Fish Monitoring System</li><li>Luke Munday</li>
 						</ul>
 					</footer>
 
