@@ -15,6 +15,7 @@ $ops->login();
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="images/icon.svg">
 	</head>
 	<body class="is-loading">
 
@@ -24,7 +25,7 @@ $ops->login();
 				<!-- Main -->
 					<section id="main">
 						<header>
-							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
+							<span class=""><img src="images/icon.svg" alt="" style="width: 122px;"/></span>
 							<h1>Fish Monitoring<br>System</h1>
 						</header>
 						<hr />
@@ -41,14 +42,6 @@ $ops->login();
 								<li><input type="submit" name="submit" id="submit" placeholder="submit" value=" Submit "/></li>
 							</ul>
 						</form>
-						<hr />
-						<footer>
-							<ul class="icons">
-								<li><a href="#" class="fa-twitter">Twitter</a></li>
-								<li><a href="#" class="fa-instagram">Instagram</a></li>
-								<li><a href="#" class="fa-facebook">Facebook</a></li>
-							</ul>
-						</footer>
 					</section>
 
 				<!-- Footer -->
