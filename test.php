@@ -1,7 +1,14 @@
 <?php
 include 'dbOps.php';
+
 $ops = new Ops();
 $ops->check_login();
-$ops->echo_table("Users");
-$ops->echo_table("Data");
+
+$search = $ops->create_search("*", "Users", "");
+$result = $ops->search_db($search);
+$ops->echo_table($result);
+
+$search = $ops->create_search("*", "Data", "");
+$result = $ops->search_db($search);
+$ops->echo_table($result);
 ?>
