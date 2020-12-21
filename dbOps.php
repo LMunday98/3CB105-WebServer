@@ -6,8 +6,7 @@ class Ops {
   public $connection;
 
   function __construct() {
-    $config = new Config();
-    $this->connection = $config->establish_connection();
+    $this->connection = establish_connection();
   }
   function get_conn() {
     return $this->connection;
