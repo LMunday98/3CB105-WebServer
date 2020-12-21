@@ -7,6 +7,7 @@ class Ops {
 
   function __construct() {
     $this->connection = establish_connection();
+    $this->check_login();
   }
   function get_conn() {
     return $this->connection;
