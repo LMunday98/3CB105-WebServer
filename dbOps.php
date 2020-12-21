@@ -44,8 +44,7 @@ class Ops {
 
   function check_login() {
     if ((!$this->is_index_page()) && (!isset($_SESSION['logged_in']))) {
-        header("location: logout.php");
-        echo "not logged in";
+        $this->direct_to_page("index.php");
     }
   }
 
@@ -53,31 +52,30 @@ class Ops {
     return mysqli_real_escape_string($this->connection,$str);
   }
 
+  function does_usr_exist($search) {
+    $result = $this->search_db($search);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
+    if($count == 1) { return True; } else { return False; }
+  }
+
+  function direct_to_page($url) {
+    header("location: " . $url . "");
+  }
+
   function login() {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-      $db = $this->connection;
-      $myusername = $this->format_str($_POST['username']);
-      $mypassword = $this->format_str($_POST['password']);
+      $given_username = $this->format_str($_POST['username']);
+      $given_password = $this->format_str($_POST['password']);
+      $search = $this->create_search("*", "Users", " WHERE user_name='" . $given_username . "' and password='" . $given_password . "'");
 
-      $search = $this->create_search("*", "Users", " WHERE user_name='" . $myusername . "' and password='" . $mypassword . "'");
-      $result = $this->search_db($search);
-
-      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-      $count = mysqli_num_rows($result);
-
-      if($count == 1) {
-        $search = $this->create_search("*", "Users", " WHERE user_name='" . $myusername . "'");
+      if($this->does_usr_exist($search)) {
         $result = $this->search_db($search);
-        
         $_SESSION['logged_in'] = True;
         $_SESSION['user_data'] = mysqli_fetch_assoc($result);
 
-        header("location: test.php");
-        echo "yes";
-      } else {
-        header("location: index.php");
-        echo "no";
-      }
+        $this->direct_to_page("test.php");
+      } else { $this->direct_to_page("index.php"); }
     }
   }
 }
