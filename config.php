@@ -1,5 +1,6 @@
 <?php
-  function getConnection() {
+class Config {
+  function establish_connection() {
     $ip = '192.168.0.185:3306';
     $usr = 'remote';
     $pass = 'remote';
@@ -15,4 +16,5 @@
       return $conn;
     }
   }
+}
  ?>
