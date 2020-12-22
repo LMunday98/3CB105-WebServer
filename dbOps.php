@@ -16,10 +16,10 @@ class Ops {
   function echo_table($data) {
     $headers = False;
     echo "<br>";
-    echo "<table style='border: 1px solid black;'>";
+    echo "<table style='border: 1px solid black; width: 100%;'>";
     echo "<tr>";
     foreach (mysqli_fetch_assoc($data) as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
-        echo "<th>" . $field . "</th>"; // I just did not use "htmlspecialchars()" function.
+        echo "<th>" . $this->format_field_names($field) . "</th>"; // I just did not use "htmlspecialchars()" function.
     }
     echo "</tr>";
     while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
@@ -30,6 +30,10 @@ class Ops {
         echo "</tr>";
     }
     echo "</table>";
+  }
+
+  function format_field_names($field_name) {
+    return str_replace("_"," ",$field_name);
   }
 
   function create_search($spec, $table, $cond) {
