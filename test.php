@@ -17,4 +17,7 @@ $ops->echo_table($result);
 ?>
 
 <br>
+<a href='home.php'>home</a>
+<br>
+<br>
 <a href='logout.php'>logout</a>

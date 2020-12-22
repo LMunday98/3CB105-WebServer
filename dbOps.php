@@ -74,8 +74,10 @@ class Ops {
         $_SESSION['logged_in'] = True;
         $_SESSION['user_data'] = mysqli_fetch_assoc($result);
 
-        $this->direct_to_page("test.php");
-      } else { $this->direct_to_page("index.php"); }
+        $this->direct_to_page("home.php");
+      } else {
+        $this->direct_to_page("index.php");
+      }
     }
   }
 }
