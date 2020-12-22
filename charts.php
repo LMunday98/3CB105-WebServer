@@ -15,6 +15,8 @@ $usr = $_SESSION['user_data'];
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="images/icon.svg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 	</head>
 	<body class="is-loading">
 
@@ -23,15 +25,41 @@ $usr = $_SESSION['user_data'];
       <!-- Main -->
         <section id="main">
           <header>
-            <h1>Home screen</h1>
-            <?php echo "<h3>Welcome, " . $usr['first_name'] . " " . $usr['last_name'] . "!</h3>"; ?>
+            <h1>Charts</h1>
           </header>
           <hr />
-          <input type="button" value="Charts" onclick="window.location='charts.php';" />
-          <br><br>
-          <input type="button" value="Data Log" onclick="window.location='datalog.php';" />
+          <input type="button" value="Home" onclick="window.location='home.php';" />
           <br><br>
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
+          <hr />
+
+
+
+          <canvas id="myChart" width="400" height="400"></canvas>
+          <script>
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: 'line',
+
+              // The data for our dataset
+              data: {
+                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'July', 'July', 'July'],
+                  datasets: [{
+                      label: 'My First dataset',
+                      backgroundColor: 'rgb(255, 99, 132)',
+                      borderColor: 'rgb(255, 99, 132)',
+                      data: [0, 10, 5, 2, 20, 30, 45, 40, 20, 65]
+                  }]
+              },
+
+              // Configuration options go here
+              options: {}
+          });
+          </script>
+
+
+
         </section>
 
       <!-- Footer -->
