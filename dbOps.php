@@ -14,8 +14,14 @@ class Ops {
   }
 
   function echo_table($data) {
+    $headers = False;
     echo "<br>";
-    echo "<table border='1'>";
+    echo "<table style='border: 1px solid black;'>";
+    echo "<tr>";
+    foreach (mysqli_fetch_assoc($data) as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
+        echo "<th>" . $field . "</th>"; // I just did not use "htmlspecialchars()" function.
+    }
+    echo "</tr>";
     while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
         echo "<tr>";
         foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {

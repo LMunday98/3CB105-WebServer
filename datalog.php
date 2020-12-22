@@ -1,9 +1,9 @@
 <?php
 include 'dbOps.php';
-$ops = new Ops();
-$ops->login();
 
-$usr = $_SESSION['user_data'];
+$ops = new Ops();
+$ops->check_login();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -25,40 +25,25 @@ $usr = $_SESSION['user_data'];
       <!-- Main -->
         <section id="main">
           <header>
-            <h1>Home screen</h1>
-            <?php echo "Welcome, " . $usr['first_name'] . " " . $usr['last_name'] . "!<br>"; ?>
+            <h1>Data log</h1>
           </header>
           <hr />
-          <input type="button" value="Data Log" onclick="window.location='datalog.php';" />
+          <input type="button" value="Home" onclick="window.location='home.php';" />
           <br><br>
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
           <hr />
 
+          <?php
 
+          $search = $ops->create_search("*", "Users", "");
+          $result = $ops->search_db($search);
+          $ops->echo_table($result);
 
-          <canvas id="myChart" width="400" height="400"></canvas>
-          <script>
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var chart = new Chart(ctx, {
-              // The type of chart we want to create
-              type: 'line',
+          $search = $ops->create_search("*", "Data", "");
+          $result = $ops->search_db($search);
+          $ops->echo_table($result);
 
-              // The data for our dataset
-              data: {
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'July', 'July', 'July'],
-                  datasets: [{
-                      label: 'My First dataset',
-                      backgroundColor: 'rgb(255, 99, 132)',
-                      borderColor: 'rgb(255, 99, 132)',
-                      data: [0, 10, 5, 2, 20, 30, 45, 40, 20, 65]
-                  }]
-              },
-
-              // Configuration options go here
-              options: {}
-          });
-          </script>
-
+           ?>
 
 
         </section>
