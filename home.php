@@ -26,7 +26,9 @@ $ops->login();
             <h1>Home screen</h1>
           </header>
           <hr />
-          <button><a href='test.php'>Test</a></button><button><a href='logout.php'>logout</a></button>
+          <input type="button" value="Data Log" onclick="window.location='test.php';" />
+          <br><br>
+          <input type="button" value="Logout" onclick="window.location='logout.php';" />  
           <hr />
 
 
