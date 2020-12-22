@@ -13,15 +13,34 @@ class Ops {
     return $this->connection;
   }
 
-  function echo_table($data) {
-    $headers = False;
+  function echo_table($table) {
+
+
     echo "<br>";
     echo "<table style='border: 1px solid black; width: 100%;'>";
+
+    $search = $this->create_header_search($table);
+    $result = $this->search_db($search);
+    $this->create_header($result);
+
+    $search = $this->create_search("*", $table, "");
+    $result = $this->search_db($search);
+    $this->create_row($result);
+
+    echo "</table>";
+  }
+
+  function create_header($data) {
     echo "<tr>";
-    foreach (mysqli_fetch_assoc($data) as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
-        echo "<th>" . $this->format_field_names($field) . "</th>"; // I just did not use "htmlspecialchars()" function.
+    while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
+        foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
+            echo "<th>" . $this->format_header_names($value) . "</th>"; // I just did not use "htmlspecialchars()" function.
+        }
     }
     echo "</tr>";
+  }
+
+  function create_row($data) {
     while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
         echo "<tr>";
         foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
@@ -29,10 +48,14 @@ class Ops {
         }
         echo "</tr>";
     }
-    echo "</table>";
   }
 
-  function format_field_names($field_name) {
+  function create_header_search($table) {
+    $search = $this->create_search("`COLUMN_NAME` ", "`INFORMATION_SCHEMA`.`COLUMNS` ", " WHERE `TABLE_NAME`='" . $table ."'");
+    return $search;
+  }
+
+  function format_header_names($field_name) {
     return str_replace("_"," ",$field_name);
   }
 

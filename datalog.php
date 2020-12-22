@@ -3,7 +3,6 @@ include 'dbOps.php';
 
 $ops = new Ops();
 $ops->check_login();
-
 ?>
 
 <!DOCTYPE HTML>
@@ -35,13 +34,9 @@ $ops->check_login();
 
           <?php
 
-          $search = $ops->create_search("*", "Users", "");
-          $result = $ops->search_db($search);
-          $ops->echo_table($result);
 
-          $search = $ops->create_search("*", "Data", "");
-          $result = $ops->search_db($search);
-          $ops->echo_table($result);
+          $ops->echo_table("Users");
+          $ops->echo_table("Data");
 
            ?>
 
