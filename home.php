@@ -26,7 +26,7 @@ $usr = $_SESSION['user_data'];
         <section id="main">
           <header>
             <h1>Home screen</h1>
-            <?php echo "Welcome, " . $usr['first_name'] . " " . $usr['last_name'] . "!<br>"; ?>
+            <?php echo "<h3>Welcome, " . $usr['first_name'] . " " . $usr['last_name'] . "!</h3>"; ?>
           </header>
           <hr />
           <input type="button" value="Data Log" onclick="window.location='datalog.php';" />
