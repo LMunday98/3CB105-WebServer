@@ -33,32 +33,7 @@ $usr = $_SESSION['user_data'];
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
           <hr />
 
-
-
-          <canvas id="myChart" width="400" height="400"></canvas>
-          <script>
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var chart = new Chart(ctx, {
-              // The type of chart we want to create
-              type: 'line',
-
-              // The data for our dataset
-              data: {
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'July', 'July', 'July'],
-                  datasets: [{
-                      label: 'My First dataset',
-                      backgroundColor: 'rgb(255, 99, 132)',
-                      borderColor: 'rgb(255, 99, 132)',
-                      data: [0, 10, 5, 2, 20, 30, 45, 40, 20, 65]
-                  }]
-              },
-
-              // Configuration options go here
-              options: {}
-          });
-          </script>
-
-
+					<canvas id="myChart" width="400" height="400"></canvas>
 
         </section>
 
@@ -71,15 +46,14 @@ $usr = $_SESSION['user_data'];
 
     </div>
 
+		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
-
-
-			<script>
-				if ('addEventListener' in window) {
-					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
-					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-				}
-			</script>
+		<script>
+			if ('addEventListener' in window) {
+				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+				document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+			}
+		</script>
 
 	</body>
 </html>
