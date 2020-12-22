@@ -33,13 +33,10 @@ $ops->check_login();
           <hr />
 
           <?php
-
-
           $ops->echo_table("Users");
+          echo "<hr />";
           $ops->echo_table("Data");
-
            ?>
-
 
         </section>
 

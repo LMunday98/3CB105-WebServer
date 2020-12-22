@@ -14,9 +14,6 @@ class Ops {
   }
 
   function echo_table($table) {
-
-
-    echo "<br>";
     echo "<table style='border: 1px solid black; width: 100%;'>";
 
     $search = $this->create_header_search($table);
@@ -32,19 +29,19 @@ class Ops {
 
   function create_header($data) {
     echo "<tr>";
-    while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
-        foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
-            echo "<th>" . $this->format_header_names($value) . "</th>"; // I just did not use "htmlspecialchars()" function.
+    while ($row = mysqli_fetch_assoc($data)) { 
+        foreach ($row as $field => $value) {
+            echo "<th>" . $this->format_header_names($value) . "</th>";
         }
     }
     echo "</tr>";
   }
 
   function create_row($data) {
-    while ($row = mysqli_fetch_assoc($data)) { // Important line !!! Check summary get row on array ..
+    while ($row = mysqli_fetch_assoc($data)) {
         echo "<tr>";
-        foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
-            echo "<td>" . $value . "</td>"; // I just did not use "htmlspecialchars()" function.
+        foreach ($row as $field => $value) {
+            echo "<td>" . $value . "</td>";
         }
         echo "</tr>";
     }
