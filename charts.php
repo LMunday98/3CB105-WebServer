@@ -15,6 +15,11 @@ $usr = $_SESSION['user_data'];
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="images/icon.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+
+
 
 	</head>
 	<body class="is-loading">
@@ -61,8 +66,8 @@ $usr = $_SESSION['user_data'];
 			<?php
 			$date = "2020-12-23";
 			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $ops->get_chart_data_array("water_temperature", "log_time", $date));
-			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", $date));
-			$ops->echo_graph_creation_function('rpi_chart', 'scatter', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
+			//$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", $date));
+			//$ops->echo_graph_creation_function('rpi_chart', 'scatter', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
 		  ?>
 
 			hide_all();
