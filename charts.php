@@ -4,9 +4,13 @@ $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
 
-$data_array = $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23");
-$graph_y = $data_array[1];
-$graph_x = $data_array[0];
+$temperature_data_array = $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23");
+$temperature_graph_y = $temperature_data_array[1];
+$temperature_graph_x = $temperature_data_array[0];
+
+$waterlvl_data_array = $ops->get_chart_data_array("water_level_max", "log_time", "2020-12-23");
+$waterlvl_graph_y = $waterlvl_data_array[1];
+$waterlvl_graph_x = $waterlvl_data_array[0];
 ?>
 
 <!DOCTYPE HTML>
@@ -37,13 +41,13 @@ $graph_x = $data_array[0];
           <hr />
 
 					<input type="date" id="datepicker" name="datepicker" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br><br>
-					<input id="clickMe" type="button" value="line" onclick="change_display('myChart1')" />
-					<input id="clickMe" type="button" value="scatter" onclick="change_display('myChart2');" />
+					<input id="clickMe" type="button" value="Temperature" onclick="change_display('temperature_chart')" />
+					<input id="clickMe" type="button" value="Water Level" onclick="change_display('waterlvl_chart');" />
 
 					<hr />
 
-					<canvas id="myChart1" class="hideable" width="400px" height="400px"></canvas>
-					<canvas id="myChart2" class="hideable" width="400px" height="400px"></canvas>
+					<canvas id="temperature_chart" class="hideable" width="400px" height="400px"></canvas>
+					<canvas id="waterlvl_chart" class="hideable" width="400px" height="400px"></canvas>
 
         </section>
 
@@ -61,10 +65,10 @@ $graph_x = $data_array[0];
 		<script>
 
 
-			create_chart_line('myChart1', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
-			create_chart_scatter('myChart2', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+			create_chart_scatter('temperature_chart', 'Temperature v Time', <?php echo $temperature_graph_y ?>, <?php echo $temperature_graph_x ?>);
+			create_chart_scatter('waterlvl_chart', 'Water Level v Time', <?php echo $waterlvl_graph_y ?>, <?php echo $waterlvl_graph_x ?>);
 			hide_all();
-			change_display('myChart1');
+			change_display('temperature_chart');
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {

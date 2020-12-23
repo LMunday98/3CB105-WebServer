@@ -19,7 +19,7 @@ class Ops {
       $date = " WHERE log_date='" . $date . "'";
     }
 */
-    echo $x . $y . $date;
+    //echo $x . $y . $date;
     $search = $this->create_search($x . "," . $y, "Data", " WHERE log_date='" . $date . "'");
     $results = $this->search_db($search);
 
@@ -27,13 +27,13 @@ class Ops {
   }
 
   function chart_results_to_array($results, $x, $y) {
-    echo $x . " " . $y . "<br>";
+    //echo $x . " " . $y . "<br>";
     $x_array = array();
     $y_array = array();
     while ($row = mysqli_fetch_assoc($results)) {
       array_push($x_array, $row[$x]);
       array_push($y_array, $row[$y]);
-      echo $row[$x] . " " . $row[$y] . "<br>";
+      //echo $row[$x] . " " . $row[$y] . "<br>";
     }
     return array(json_encode($x_array), json_encode($y_array));
   }
