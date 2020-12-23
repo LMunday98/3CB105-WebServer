@@ -2,11 +2,15 @@
 include 'dbOps.php';
 $ops = new Ops();
 $ops->login();
-
 $usr = $_SESSION['user_data'];
 
+// $sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY data_id";
+$search = $ops->create_search("*", "Data", "");
+$results = $ops->search_db($search);
+$data_array = $ops->results_to_array($results);
+
 $graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
-$graph_d = json_encode(array(0, 10, 5, 2));
+$graph_d = json_encode($data_array);
 ?>
 
 <!DOCTYPE HTML>
@@ -55,7 +59,9 @@ $graph_d = json_encode(array(0, 10, 5, 2));
 			create_chart('Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
 
 			if ('addEventListener' in window) {
-				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+				window.addEventListener('load', function() {
+					document.body.className = document.body.className.replace(/\bis-loading\b/, '');
+				});
 				document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 			}
 		</script>

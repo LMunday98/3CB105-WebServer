@@ -13,6 +13,17 @@ class Ops {
     return $this->connection;
   }
 
+  function results_to_array($results) {
+    $data_array = array();
+    while ($row = mysqli_fetch_assoc($results)) {
+    		foreach ($row as $field => $value) {
+    				//echo $value;
+            array_push($data_array, $value);
+    		}
+    }
+    return $data_array;
+  }
+
   function echo_table($table) {
     echo "<table style='border: 1px solid black; width: 100%;'>";
 
@@ -29,7 +40,7 @@ class Ops {
 
   function create_header($data) {
     echo "<tr>";
-    while ($row = mysqli_fetch_assoc($data)) { 
+    while ($row = mysqli_fetch_assoc($data)) {
         foreach ($row as $field => $value) {
             echo "<th>" . $this->format_header_names($value) . "</th>";
         }
