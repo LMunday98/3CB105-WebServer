@@ -4,11 +4,9 @@ $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
 
-// $sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY data_id";
 $data_array = $ops->get_chart_data_array("water_temperature", "time");
-
-$graph_h = $data_array[1];
-$graph_d = $data_array[0];
+$graph_y = $data_array[1];
+$graph_x = $data_array[0];
 ?>
 
 <!DOCTYPE HTML>
@@ -58,8 +56,8 @@ $graph_d = $data_array[0];
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
 		<script>
-			create_chart_line('myLineChart', 'Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
-			create_chart_line('myScatterChart', 'Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
+			create_chart_line('myLineChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+			create_chart_line('myScatterChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {
