@@ -35,7 +35,7 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data)
 
   var chart_data = {
       datasets: [{
-          label: 'Scatter Dataset',
+          label: graph_title,
           data: data_to_plot
       }]
   }

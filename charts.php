@@ -36,11 +36,13 @@ $graph_x = $data_array[0];
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
           <hr />
 
-					<canvas id="myLineChart" width="800" height="800"></canvas>
+					<input id="clickMe" type="button" value="line" onclick="change_display('myChart1')" />
+					<input id="clickMe" type="button" value="scatter" onclick="change_display('myChart2');" />
 
 					<hr />
 
-					<canvas id="myScatterChart" width="800" height="800"></canvas>
+					<canvas id="myChart1" width="400px" height="400px"></canvas>
+					<canvas id="myChart2" width="400px" height="400px"></canvas>
 
         </section>
 
@@ -56,8 +58,19 @@ $graph_x = $data_array[0];
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
 		<script>
-			create_chart_line('myLineChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
-			create_chart_scatter('myScatterChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+
+
+		create_chart_line('myChart1', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+		create_chart_scatter('myChart2', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+
+		function change_display(element_id) {
+		  var x = document.getElementById(element_id);
+		  if (x.style.display === "none") {
+		    x.style.display = "block";
+		  } else {
+		    x.style.display = "none";
+		  }
+		}
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {
