@@ -94,3 +94,16 @@ function filterTimeFormat(time) {
 
 	return time;
 }
+
+function hide_all() {
+  var divsToHide = document.getElementsByClassName("hideable"); //divsToHide is an array
+  for(var i = 0; i < divsToHide.length; i++){
+      divsToHide[i].style.display = "none"; // depending on what you're doing
+  }
+}
+
+function change_display(element_id) {
+  hide_all();
+  var x = document.getElementById(element_id);
+  x.style.display = "block";
+}

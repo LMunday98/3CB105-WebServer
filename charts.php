@@ -36,6 +36,7 @@ $graph_x = $data_array[0];
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
           <hr />
 
+					<input type="date" id="datepicker" name="datepicker" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br><br>
 					<input id="clickMe" type="button" value="line" onclick="change_display('myChart1')" />
 					<input id="clickMe" type="button" value="scatter" onclick="change_display('myChart2');" />
 
@@ -60,23 +61,10 @@ $graph_x = $data_array[0];
 		<script>
 
 
-		create_chart_line('myChart1', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
-		create_chart_scatter('myChart2', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
-		hide_all();
-		change_display('myChart1');
-
-		function hide_all() {
-			var divsToHide = document.getElementsByClassName("hideable"); //divsToHide is an array
-	    for(var i = 0; i < divsToHide.length; i++){
-	        divsToHide[i].style.display = "none"; // depending on what you're doing
-	    }
-		}
-
-		function change_display(element_id) {
+			create_chart_line('myChart1', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+			create_chart_scatter('myChart2', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
 			hide_all();
-		  var x = document.getElementById(element_id);
-		  x.style.display = "block";
-		}
+			change_display('myChart1');
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {
