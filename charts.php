@@ -3,6 +3,8 @@ include 'dbOps.php';
 $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
+
+$date = '2020-12-23';
 ?>
 
 <!DOCTYPE HTML>
@@ -27,26 +29,35 @@ $usr = $_SESSION['user_data'];
     <div id="wrapper">
 
       <!-- Main -->
-        <section id="main">
+        <section id="main"  style="width: 60%;">
           <header>
             <h1>Charts</h1>
           </header>
           <hr />
+
           <input type="button" value="Home" onclick="window.location='home.php';" />
           <br><br>
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
+
           <hr />
 
-					<input type="date" id="datepicker" name="datepicker" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br><br>
-					<input id="clickMe" type="button" value="Temperature" onclick="change_display('temperature_chart')" />
-					<input id="clickMe" type="button" value="Water Level" onclick="change_display('waterlvl_chart');" />
-					<input id="clickMe" type="button" value="RPI Readings" onclick="change_display('rpi_chart');" />
+					<input type="date" id="datepicker" name="datepicker" value="2020-12-23" min="2020-12-22" max="2020-12-23">
 
 					<hr />
 
-					<canvas id="temperature_chart" class="hideable" width="400px" height="400px"></canvas>
-					<canvas id="waterlvl_chart" class="hideable" width="400px" height="400px"></canvas>
-					<canvas id="rpi_chart" class="hideable" width="400px" height="400px"></canvas>
+					<input id="clickMe" type="button" value="Temperature" onclick="change_display('temperature_chart')" />
+					<input id="clickMe" type="button" value="Water Level" onclick="change_display('waterlvl_chart');" />
+					<input id="clickMe" type="button" value="RPI Usage" onclick="change_display('rpi_usage_chart');" />
+					<input id="clickMe" type="button" value="RPI Temperature" onclick="change_display('rpi_temp_chart');" />
+
+					<hr />
+
+					<div>
+						<canvas id="temperature_chart" class="hideable" width="400px" height="400px"></canvas>
+						<canvas id="waterlvl_chart" class="hideable" width="400px" height="400px"></canvas>
+						<canvas id="rpi_usage_chart" class="hideable" width="400px" height="400px"></canvas>
+						<canvas id="rpi_temp_chart" class="hideable" width="400px" height="400px"></canvas>
+					</div>
 
         </section>
 
@@ -64,10 +75,10 @@ $usr = $_SESSION['user_data'];
 		<script>
 
 			<?php
-			$date = "2020-12-23";
-			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $ops->get_chart_data_array("water_temperature", "log_time", $date));
-			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", $date));
-			$ops->echo_graph_creation_function('rpi_chart', 'scatter', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
+			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_temperature", "log_time", $date));
+			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_level_max", "log_time", $date));
+			$ops->echo_graph_creation_function('rpi_usage_chart', 'scatter', 'Raspberry Pi Usage (RPI) v Time', 'Usage (%)', $ops->get_chart_data_array("rpi_cpu", "log_time", $date));
+			$ops->echo_graph_creation_function('rpi_temp_chart', 'scatter', 'Raspberry Pi Temperature (RPI) v Time', 'Temperature (°C)', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
 		  ?>
 
 			hide_all();

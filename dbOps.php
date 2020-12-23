@@ -13,8 +13,8 @@ class Ops {
     return $this->connection;
   }
 
-  function echo_graph_creation_function($chart_id, $chart_type, $chart_name, $data_array) {
-    echo "create_chart_" . $chart_type ."('" . $chart_id . "', '" . $chart_name . "', " . $data_array[1] . ", " . $data_array[0] . ");";
+  function echo_graph_creation_function($chart_id, $chart_type, $chart_name, $y_label, $data_array) {
+    echo "create_chart_" . $chart_type ."('" . $chart_id . "', '" . $chart_name . "', '" . $y_label . "', " . $data_array[1] . ", " . $data_array[0] . ");";
   }
 
   function get_chart_data_array($x, $y, $date) {

@@ -26,7 +26,7 @@ function storeCoordinate(xVal, yVal, array) {
     array.push({x: xVal, y: yVal});
 }
 
-function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data ) {
+function create_chart_scatter (chart_id, graph_title, y_label, graph_headers, graph_data ) {
   var chart_element = document.getElementById(chart_id).getContext('2d');
   var data_to_plot = [];
   for (var i = 0; i < graph_data.length; i++) {
@@ -65,7 +65,7 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
               yAxes: [{
                   scaleLabel: {
                     display: true,
-                    labelString: 'Temperature (°C)'
+                    labelString: y_label
                   },
                   ticks: {
                     beginAtZero: true
