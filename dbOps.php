@@ -12,7 +12,7 @@ class Ops {
   function get_conn() {
     return $this->connection;
   }
-
+  
   function get_chart_data_array($x, $y, $date) {
 /*
     if ($date != '') {
