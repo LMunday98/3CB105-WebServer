@@ -13,14 +13,20 @@ class Ops {
     return $this->connection;
   }
 
-  function results_to_array($results, $x, $y) {
+  function get_chart_data_array($x, $y) {
+    $search = $this->create_search($x . "," . $y, "Data", "");
+    $results = $this->search_db($search);
+    return $this->chart_results_to_array($results, $x, $y);
+  }
+
+  function chart_results_to_array($results, $x, $y) {
     $x_array = array();
     $y_array = array();
     while ($row = mysqli_fetch_assoc($results)) {
       array_push($x_array, $row[$x]);
       array_push($y_array, $row[$y]);
     }
-    return array($x_array, $y_array);
+    return array(json_encode($x_array), json_encode($y_array));
   }
 
   function echo_table($table) {

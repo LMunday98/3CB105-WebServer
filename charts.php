@@ -5,12 +5,10 @@ $ops->login();
 $usr = $_SESSION['user_data'];
 
 // $sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY data_id";
-$search = $ops->create_search("water_temperature,time", "Data", "");
-$results = $ops->search_db($search);
-$data_array = $ops->results_to_array($results, "water_temperature", "time");
+$data_array = $ops->get_chart_data_array("water_temperature", "time");
 
-$graph_h = json_encode($data_array[1]);
-$graph_d = json_encode($data_array[0]);
+$graph_h = $data_array[1];
+$graph_d = $data_array[0];
 ?>
 
 <!DOCTYPE HTML>
@@ -40,7 +38,11 @@ $graph_d = json_encode($data_array[0]);
           <input type="button" value="Logout" onclick="window.location='logout.php';" />
           <hr />
 
-					<canvas id="myChart" width="400" height="400"></canvas>
+					<canvas id="myLineChart" width="800" height="800"></canvas>
+
+					<hr />
+
+					<canvas id="myScatterChart" width="800" height="800"></canvas>
 
         </section>
 
@@ -56,7 +58,8 @@ $graph_d = json_encode($data_array[0]);
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
 		<script>
-			create_chart('Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
+			create_chart_line('myLineChart', 'Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
+			create_chart_line('myScatterChart', 'Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {
