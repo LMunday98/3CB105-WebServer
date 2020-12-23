@@ -84,7 +84,7 @@ function calc_avg_time_data(times, data, divisions) {
   var avg_count = 0;
   for (var i = 0; i < times.length; i++) {
     time = times[i];
-    current_data_val = parseInt(data[i]);
+    current_data_val = parseFloat(data[i]);
     current_time_index = calc_avg_time_index(time, divisions);
     if (time_index == current_time_index) {
       avg_data = avg_data + current_data_val;
@@ -112,7 +112,7 @@ function create_chart_scatter (chart_id, graph_title, y_label, graph_headers, gr
 
   var times = graph_headers;
   var data = graph_data
-  var divisions = 4;
+  var divisions = 6;
   data_to_plot = calc_avg_time_data(times, data, divisions);
 
   var chart_data = {
