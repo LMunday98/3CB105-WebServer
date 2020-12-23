@@ -13,15 +13,14 @@ class Ops {
     return $this->connection;
   }
 
-  function results_to_array($results) {
-    $data_array = array();
+  function results_to_array($results, $x, $y) {
+    $x_array = array();
+    $y_array = array();
     while ($row = mysqli_fetch_assoc($results)) {
-    		foreach ($row as $field => $value) {
-    				//echo $value;
-            array_push($data_array, $value);
-    		}
+      array_push($x_array, $row[$x]);
+      array_push($y_array, $row[$y]);
     }
-    return $data_array;
+    return array($x_array, $y_array);
   }
 
   function echo_table($table) {

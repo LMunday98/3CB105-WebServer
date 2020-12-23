@@ -5,12 +5,12 @@ $ops->login();
 $usr = $_SESSION['user_data'];
 
 // $sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY data_id";
-$search = $ops->create_search("*", "Data", "");
+$search = $ops->create_search("water_temperature,time", "Data", "");
 $results = $ops->search_db($search);
-$data_array = $ops->results_to_array($results);
+$data_array = $ops->results_to_array($results, "water_temperature", "time");
 
-$graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
-$graph_d = json_encode($data_array);
+$graph_h = json_encode($data_array[1]);
+$graph_d = json_encode($data_array[0]);
 ?>
 
 <!DOCTYPE HTML>
