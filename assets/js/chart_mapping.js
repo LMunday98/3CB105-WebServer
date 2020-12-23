@@ -10,7 +10,8 @@ function create_chart_line (chart_id, graph_title, graph_headers, graph_data) {
           label: graph_title,
           backgroundColor: graph_col_bg,
           borderColor: graph_col_bdr,
-          data: graph_data
+          data: graph_data,
+          showLine: 0
       }]
   };
 
