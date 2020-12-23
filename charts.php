@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<script>
 			<?php
 			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_temperature", "log_time", $date));
-			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_level_max", "log_time", $date));
+			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', 'Water Level (%)', $ops->get_chart_data_array("water_level_max", "log_time", $date));
 			$ops->echo_graph_creation_function('rpi_cpu_usage_chart', 'scatter', 'Raspberry Pi CPU Usage (RPI) v Time', 'Usage (%)', $ops->get_chart_data_array("rpi_cpu", "log_time", $date));
 			$ops->echo_graph_creation_function('rpi_mem_usage_chart', 'scatter', 'Raspberry Pi Memory Usage (RPI) v Time', 'Usage (%)', $ops->get_chart_data_array("rpi_mem", "log_time", $date));
 			$ops->echo_graph_creation_function('rpi_temp_chart', 'scatter', 'Raspberry Pi Temperature (RPI) v Time', 'Temperature (°C)', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
