@@ -5,7 +5,6 @@ $ops->check_login();
 $usr = $_SESSION['user_data'];
 
 $date = date("Y-m-d");
-
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$date = $_POST['datepicker'];
 }
@@ -21,12 +20,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="images/icon.svg">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
-
-
-
-
 	</head>
 	<body class="is-loading">
 
@@ -81,7 +74,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
 		<script>
-
 			<?php
 			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_temperature", "log_time", $date));
 			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', 'Temperature (°C)', $ops->get_chart_data_array("water_level_max", "log_time", $date));
