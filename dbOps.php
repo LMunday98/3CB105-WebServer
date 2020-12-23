@@ -13,8 +13,13 @@ class Ops {
     return $this->connection;
   }
 
-  function get_chart_data_array($x, $y) {
-    $search = $this->create_search($x . "," . $y, "Data", "");
+  function get_chart_data_array($x, $y, $date) {
+
+    if ($date != '') {
+      $date = " WHERE date='" . $date . "'";
+    }
+
+    $search = $this->create_search($x . "," . $y, "Data", $date);
     $results = $this->search_db($search);
     return $this->chart_results_to_array($results, $x, $y);
   }
