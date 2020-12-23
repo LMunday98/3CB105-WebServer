@@ -3,10 +3,6 @@ include 'dbOps.php';
 $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
-
-$temperature_data_array = $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23");
-$waterlvl_data_array = $ops->get_chart_data_array("water_level_max", "log_time", "2020-12-23");
-
 ?>
 
 <!DOCTYPE HTML>
@@ -63,9 +59,9 @@ $waterlvl_data_array = $ops->get_chart_data_array("water_level_max", "log_time",
 		<script>
 
 			<?php
-			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $temperature_data_array);
-			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $waterlvl_data_array);
-			$ops->echo_graph_creation_function('rpi_chart', 'line', 'Raspberry Pi Readings (RPI) v Time', $temperature_data_array);
+			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23"));
+			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", "2020-12-23"));
+			$ops->echo_graph_creation_function('rpi_chart', 'line', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23"));
 		  ?>
 
 			hide_all();
