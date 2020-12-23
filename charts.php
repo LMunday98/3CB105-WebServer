@@ -4,6 +4,8 @@ $ops = new Ops();
 $ops->login();
 
 $usr = $_SESSION['user_data'];
+
+$graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
 ?>
 
 <!DOCTYPE HTML>
@@ -45,6 +47,10 @@ $usr = $_SESSION['user_data'];
         </footer>
 
     </div>
+
+		<script>
+			var graph_headers = <?php echo $graph_h ?>;
+		</script>
 
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 

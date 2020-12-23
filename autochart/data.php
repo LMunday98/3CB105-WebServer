@@ -1,19 +1,9 @@
 <?php
 header('Content-Type: application/json');
 
-
-include 'dbOps.php';
-$ops = new Ops();
-$search = $ops->create_search("data_id,water_temeprature,time", "Data", " ORDER BY data_id");
-$result = $ops->search_db($search);
-
-$ops->echo_table("Data");
-
-/*
-$sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY log_id";
+$conn = mysqli_connect("localhost","root","test","phpsamples");
+$sqlQuery = "SELECT log_id,water_temeprature,time FROM Data ORDER BY data_id";
 $result = mysqli_query($conn,$sqlQuery);
-
-
 
 $data = array();
 foreach ($result as $row) {
@@ -21,6 +11,5 @@ foreach ($result as $row) {
 }
 
 mysqli_close($conn);
-*/
-echo json_encode($result);
+echo json_encode($data);
 ?>
