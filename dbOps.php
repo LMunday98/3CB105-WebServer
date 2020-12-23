@@ -12,14 +12,8 @@ class Ops {
   function get_conn() {
     return $this->connection;
   }
-  
+
   function get_chart_data_array($x, $y, $date) {
-/*
-    if ($date != '') {
-      $date = " WHERE log_date='" . $date . "'";
-    }
-*/
-    //echo $x . $y . $date;
     $search = $this->create_search($x . "," . $y, "Data", " WHERE log_date='" . $date . "'");
     $results = $this->search_db($search);
 

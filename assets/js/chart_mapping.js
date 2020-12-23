@@ -1,4 +1,4 @@
-function create_chart_line (chart_id, graph_title, graph_data graph_headers) {
+function create_chart_line (chart_id, graph_title, graph_headers, graph_data ) {
   var chart_element = document.getElementById(chart_id).getContext('2d');
 
   var graph_col_bg = 'rgb(255, 99, 132)';
@@ -38,7 +38,7 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
           label: graph_title,
           data: data_to_plot
       }]
-  }
+  };
 
   var scatterChart = new Chart(chart_element, {
       type: 'scatter',

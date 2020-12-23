@@ -6,6 +6,7 @@ $usr = $_SESSION['user_data'];
 
 $temperature_data_array = $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23");
 $waterlvl_data_array = $ops->get_chart_data_array("water_level_max", "log_time", "2020-12-23");
+
 ?>
 
 <!DOCTYPE HTML>
