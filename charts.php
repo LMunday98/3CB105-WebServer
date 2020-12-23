@@ -62,11 +62,11 @@ $waterlvl_data_array = $ops->get_chart_data_array("water_level_max", "log_time",
 
 		<script>
 
-
-
-			create_chart_scatter('temperature_chart', 'Temperature v Time', <?php echo $temperature_data_array[1] ?>, <?php echo $temperature_data_array[0] ?>);
-			create_chart_scatter('waterlvl_chart', 'Water Level v Time', <?php echo $waterlvl_data_array[1] ?>, <?php echo $waterlvl_data_array[0] ?>);
-			create_chart_line('rpi_chart', 'Raspberry Pi Readings (RPI) v Time', <?php echo $temperature_data_array[1] ?>, <?php echo $temperature_data_array[0] ?>);
+			<?php
+			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $temperature_data_array);
+			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $waterlvl_data_array);
+			$ops->echo_graph_creation_function('rpi_chart', 'line', 'Raspberry Pi Readings (RPI) v Time', $temperature_data_array);
+		  ?>
 
 			hide_all();
 			change_display('temperature_chart');
