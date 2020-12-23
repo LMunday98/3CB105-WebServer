@@ -56,6 +56,10 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
                   scaleLabel: {
                       display: true,
                       labelString: 'Time (hours)'
+                  },
+                  ticks: {
+                      min: 0, // minimum value
+                      max: 24 // maximum value
                   }
               }],
               yAxes: [{
@@ -74,8 +78,8 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
 
 function format_time(time) {
   //return time_hh(time);
-  //return time_hh_mm(time);
-  return time_hh_mm_ss(time);
+  return time_hh_mm(time);
+  //return time_hh_mm_ss(time);
 }
 
 function time_hh(time) {
