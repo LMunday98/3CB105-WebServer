@@ -21,19 +21,42 @@ function create_chart_line (chart_id, graph_title, graph_headers, graph_data) {
   });
 }
 
+function storeCoordinate(xVal, yVal, array) {
+    array.push({x: xVal, y: yVal});
+}
+
 function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data) {
   var chart_element = document.getElementById(chart_id).getContext('2d');
 
-  var graph_data = [
-    { x: -10, y: 0  },
-    { x: 0,   y: 10 },
-    { x: 10,  y: 5  }
-  ];
+  var data_to_plot = [];
+
+/*
+graph_data.forEach((item, i) => {
+  var temp_array = { x: graph_headers(i), y: graph_data(i)};
+  graph_data.push(temp_array);
+});
+*/
+
+var arrayLength = graph_data.length;
+for (var i = 0; i < arrayLength; i++) {
+    storeCoordinate(parseFloat(graph_headers[i]), graph_data[i], data_to_plot);
+    //Do something
+}
+/*
+graph_data.forEach(function (item, index) {
+  storeCoordinate(graph_headers[index], item, data_to_plot);
+});
+*/
+
+
+
+
+
 
   var chart_data = {
       datasets: [{
           label: 'Scatter Dataset',
-          data: graph_data
+          data: data_to_plot
       }]
   }
 
