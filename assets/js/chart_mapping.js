@@ -1,9 +1,5 @@
-function map_chart () {
+function create_chart (graph_title, graph_headers, graph_data) {
   var ctx = document.getElementById('myChart').getContext('2d');
-
-  var graph_title = 'Temperature v Time';
-  //var graph_data = [0, 10, 5, 2];
-  //var graph_headers = ['One', 'Two', 'Three', 'Four']
 
   var graph_col_bg = 'rgb(255, 99, 132)';
   var graph_col_bdr = 'rgb(255, 99, 132)';

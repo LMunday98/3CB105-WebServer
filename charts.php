@@ -52,10 +52,8 @@ $graph_d = json_encode(array(0, 10, 5, 2));
 		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 
 		<script>
-			var graph_headers = <?php echo $graph_h ?>;
-			var graph_data = <?php echo $graph_d ?>;
-			map_chart();
-			
+			create_chart('Temperature v Time', <?php echo $graph_h ?>, <?php echo $graph_d ?>);
+
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 				document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
