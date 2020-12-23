@@ -26,16 +26,94 @@ function storeCoordinate(xVal, yVal, array) {
     array.push({x: xVal, y: yVal});
 }
 
+function format_time(time) {
+  var time    = time.split(":");
+  var hour    = time[0];
+  var minute  = time[1];
+      time    = hour.concat(minute);
+
+  return time;
+}
+
+function calc_array_m(time, divisions) {
+  var range = 60 / divisions;
+  var coefficient = 0;
+  var min = 0;
+  var max = 0;
+
+  for (var i = 0; i < divisions; i++) {
+    coefficient = i + 1;
+    min = i * range;
+    max = (coefficient * range) - 1;
+    if (min <= time && time <= max) {
+      break;
+    }
+  }
+  return min;
+}
+
+function concat_h_m(given_hour, given_min) {
+  //time_str = given_hour + given_min;
+  var hour = given_hour + "";
+  var minute = given_min + "";
+  var time_str = hour.concat(minute);
+  return time_str;
+}
+
+function get_time_m(time) {
+  var time    = time.split(":");
+  return parseInt(time[1]);
+}
+
+function get_time_h(time) {
+  var time    = time.split(":");
+  return parseInt(time[0]);
+}
+
+function calc_avg_time_index(time, divisions) {
+  array_index_m = calc_array_m(get_time_m(time), divisions);
+  array_index_h = get_time_h(time);
+  array_index = concat_h_m(array_index_h, array_index_m);
+  return array_index;
+}
+
+function calc_avg_time_data(times, data, divisions) {
+  var data_to_plot = [];
+  var time_index = "00";
+  var avg_data = 0;
+  var avg_count = 0;
+  for (var i = 0; i < times.length; i++) {
+    time = times[i];
+    current_data_val = parseInt(data[i]);
+    current_time_index = calc_avg_time_index(time, divisions);
+    if (time_index == current_time_index) {
+      avg_data = avg_data + current_data_val;
+      avg_count++;
+    } else {
+      time_index = current_time_index;
+      avg_data = avg_data / avg_count;
+
+      var mV = (calc_array_m(get_time_m(time), divisions)) / 60;
+      var hV = get_time_h(time);
+      var yCor = parseFloat(hV) + parseFloat(mV);
+      var xCor = avg_data;
+      storeCoordinate(yCor, xCor, data_to_plot);
+      console.log("hV: ", hV, ", mV: ", mV, ", yCor: ", yCor, ", xCor: ", xCor);
+
+      avg_data = 0;
+      avg_count = 0;
+    }
+  }
+  return data_to_plot;
+}
+
 function create_chart_scatter (chart_id, graph_title, y_label, graph_headers, graph_data ) {
   var chart_element = document.getElementById(chart_id).getContext('2d');
-  var data_to_plot = [];
-  for (var i = 0; i < graph_data.length; i++) {
-      var time = graph_headers[i];
-      var time_formatted = format_time(time);
-      storeCoordinate(time_formatted, graph_data[i], data_to_plot);
-      //storeCoordinate(graph_headers[i], graph_data[i], data_to_plot);
-      console.log(time, ", ", time_formatted);
-  }
+
+  var times = graph_headers;
+  var data = graph_data
+  var divisions = 4;
+  data_to_plot = calc_avg_time_data(times, data, divisions);
 
   var chart_data = {
       datasets: [{
@@ -74,40 +152,6 @@ function create_chart_scatter (chart_id, graph_title, y_label, graph_headers, gr
           }
       }
   });
-}
-
-function format_time(time) {
-  //return time_hh(time);
-  return time_hh_mm(time);
-  //return time_hh_mm_ss(time);
-}
-
-function time_hh(time) {
-  var time    = time.split(":")
-  return time[0];
-}
-
-function time_hh_mm(time) {
-  var time    = time.split(":");
-  var hour    = time[0];
-  var minute  = time[1];
-      time    = hour.concat("." + minute);
-
-  return time;
-}
-
-function time_hh_mm_ss(time) {
-  var time = time.split(":");
-
-  var hour   = parseInt(time[0]) * 3600;
-  var minute = parseInt(time[1]) * 60;
-  var second = parseInt(time[2]);
-
-  var time_sec = hour + minute + second;
-  var time_hr = time_sec / 3600;
-  time = time_hr.toString();
-
-	return time;
 }
 
 function hide_all() {
