@@ -27,31 +27,10 @@ function storeCoordinate(xVal, yVal, array) {
 
 function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data) {
   var chart_element = document.getElementById(chart_id).getContext('2d');
-
   var data_to_plot = [];
-
-/*
-graph_data.forEach((item, i) => {
-  var temp_array = { x: graph_headers(i), y: graph_data(i)};
-  graph_data.push(temp_array);
-});
-*/
-
-var arrayLength = graph_data.length;
-for (var i = 0; i < arrayLength; i++) {
-    storeCoordinate(parseFloat(graph_headers[i]), graph_data[i], data_to_plot);
-    //Do something
-}
-/*
-graph_data.forEach(function (item, index) {
-  storeCoordinate(graph_headers[index], item, data_to_plot);
-});
-*/
-
-
-
-
-
+  for (var i = 0; i < graph_data.length; i++) {
+      storeCoordinate(filterTimeFormat(graph_headers[i]), graph_data[i], data_to_plot);
+  }
 
   var chart_data = {
       datasets: [{
@@ -72,4 +51,45 @@ graph_data.forEach(function (item, index) {
           }
       }
   });
+}
+
+function filterTimeFormat(time) {
+	var decimal_places = 2;
+	// Maximum number of hours before we should assume minutes were intended. Set to 0 to remove the maximum.
+	var maximum_hours = 15;
+	// 3
+	var int_format = time.match(/^\d+$/);
+	// 1:15
+	var time_format = time.match(/([\d]*):([\d]+)/);
+	// 10m
+	var minute_string_format = time.toLowerCase().match(/([\d]+)m/);
+	// 2h
+	var hour_string_format = time.toLowerCase().match(/([\d]+)h/);
+
+	if (time_format != null) {
+		hours = parseInt(time_format[1]);
+		minutes = parseFloat(time_format[2]/60);
+		time = hours + minutes;
+	} else if (minute_string_format != null || hour_string_format != null) {
+		if (hour_string_format != null) {
+			hours = parseInt(hour_string_format[1]);
+		} else {
+			hours = 0;
+		}
+		if (minute_string_format != null) {
+			minutes = parseFloat(minute_string_format[1]/60);
+		} else {
+			minutes = 0;
+		}
+		time = hours + minutes;
+	} else if (int_format != null) {
+		// Entries over 15 hours are likely intended to be minutes.
+		time = parseInt(time);
+		if (maximum_hours > 0 && time > maximum_hours) {
+			time = (time/60).toFixed(decimal_places);
+		}
+	}
+	time = parseFloat(time).toFixed(decimal_places);
+
+	return time;
 }
