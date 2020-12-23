@@ -4,7 +4,7 @@ $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
 
-$date = '2020-12-23';
+$date = date("Y-m-d");
 ?>
 
 <!DOCTYPE HTML>
@@ -41,7 +41,9 @@ $date = '2020-12-23';
 
           <hr />
 
-					<input type="date" id="datepicker" name="datepicker" value="2020-12-23" min="2020-12-22" max="2020-12-23">
+					<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-22' max='" . $date ."'>" ?>
+					<br><br>
+					<input id="submit" type="submit" value="submit" onclick="" />
 
 					<hr />
 
