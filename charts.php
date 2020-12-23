@@ -41,8 +41,8 @@ $graph_x = $data_array[0];
 
 					<hr />
 
-					<canvas id="myChart1" width="400px" height="400px"></canvas>
-					<canvas id="myChart2" width="400px" height="400px"></canvas>
+					<canvas id="myChart1" class="hideable" width="400px" height="400px"></canvas>
+					<canvas id="myChart2" class="hideable" width="400px" height="400px"></canvas>
 
         </section>
 
@@ -62,14 +62,20 @@ $graph_x = $data_array[0];
 
 		create_chart_line('myChart1', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
 		create_chart_scatter('myChart2', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+		hide_all();
+		change_display('myChart1');
+
+		function hide_all() {
+			var divsToHide = document.getElementsByClassName("hideable"); //divsToHide is an array
+	    for(var i = 0; i < divsToHide.length; i++){
+	        divsToHide[i].style.display = "none"; // depending on what you're doing
+	    }
+		}
 
 		function change_display(element_id) {
+			hide_all();
 		  var x = document.getElementById(element_id);
-		  if (x.style.display === "none") {
-		    x.style.display = "block";
-		  } else {
-		    x.style.display = "none";
-		  }
+		  x.style.display = "block";
 		}
 
 			if ('addEventListener' in window) {
