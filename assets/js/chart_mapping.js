@@ -47,7 +47,17 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
           scales: {
               xAxes: [{
                   type: 'linear',
-                  position: 'bottom'
+                  position: 'bottom',
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Time'
+                    }
+              }],
+              yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Temperature (°C)'
+                    }
               }]
           }
       }
