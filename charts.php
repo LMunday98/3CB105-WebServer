@@ -50,16 +50,11 @@ $graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
 
 		<script>
 			var graph_headers = <?php echo $graph_h ?>;
-		</script>
-
-		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
-
-		<script>
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 				document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 			}
 		</script>
-
+		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 	</body>
 </html>
