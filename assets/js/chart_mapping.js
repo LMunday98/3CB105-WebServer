@@ -31,7 +31,7 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
   var data_to_plot = [];
   for (var i = 0; i < graph_data.length; i++) {
       var time = graph_headers[i];
-      var time_formatted = filterTimeFormat(time);
+      var time_formatted = format_time(time);
       storeCoordinate(time_formatted, graph_data[i], data_to_plot);
       //storeCoordinate(graph_headers[i], graph_data[i], data_to_plot);
       console.log(time, ", ", time_formatted);
@@ -72,7 +72,27 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
   });
 }
 
-function filterTimeFormat(time) {
+function format_time(time) {
+  //return time_hh(time);
+  //return time_hh_mm(time);
+  return time_hh_mm_ss(time);
+}
+
+function time_hh(time) {
+  var time    = time.split(":")
+  return time[0];
+}
+
+function time_hh_mm(time) {
+  var time    = time.split(":");
+  var hour    = time[0];
+  var minute  = time[1];
+      time    = hour.concat("." + minute);
+
+  return time;
+}
+
+function time_hh_mm_ss(time) {
   var time = time.split(":");
 
   var hour   = parseInt(time[0]) * 3600;
@@ -82,7 +102,7 @@ function filterTimeFormat(time) {
   var time_sec = hour + minute + second;
   var time_hr = time_sec / 3600;
   time = time_hr.toString();
-  
+
 	return time;
 }
 
