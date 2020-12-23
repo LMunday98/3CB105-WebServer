@@ -4,7 +4,7 @@ $ops = new Ops();
 $ops->login();
 $usr = $_SESSION['user_data'];
 
-$data_array = $ops->get_chart_data_array("water_temperature", "time", "2020-12-22");
+$data_array = $ops->get_chart_data_array("water_temperature", "log_time", "2020-12-23");
 $graph_y = $data_array[1];
 $graph_x = $data_array[0];
 ?>

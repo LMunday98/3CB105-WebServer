@@ -14,22 +14,26 @@ class Ops {
   }
 
   function get_chart_data_array($x, $y, $date) {
-
+/*
     if ($date != '') {
-      $date = " WHERE date='" . $date . "'";
+      $date = " WHERE log_date='" . $date . "'";
     }
-
-    $search = $this->create_search($x . "," . $y, "Data", $date);
+*/
+    echo $x . $y . $date;
+    $search = $this->create_search($x . "," . $y, "Data", " WHERE log_date='" . $date . "'");
     $results = $this->search_db($search);
+
     return $this->chart_results_to_array($results, $x, $y);
   }
 
   function chart_results_to_array($results, $x, $y) {
+    echo $x . " " . $y . "<br>";
     $x_array = array();
     $y_array = array();
     while ($row = mysqli_fetch_assoc($results)) {
       array_push($x_array, $row[$x]);
       array_push($y_array, $row[$y]);
+      echo $row[$x] . " " . $row[$y] . "<br>";
     }
     return array(json_encode($x_array), json_encode($y_array));
   }
