@@ -57,7 +57,7 @@ $graph_x = $data_array[0];
 
 		<script>
 			create_chart_line('myLineChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
-			create_chart_line('myScatterChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
+			create_chart_scatter('myScatterChart', 'Temperature v Time', <?php echo $graph_y ?>, <?php echo $graph_x ?>);
 
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() {
