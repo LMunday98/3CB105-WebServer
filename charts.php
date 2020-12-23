@@ -66,8 +66,8 @@ $usr = $_SESSION['user_data'];
 			<?php
 			$date = "2020-12-23";
 			$ops->echo_graph_creation_function('temperature_chart', 'scatter', 'Temperature v Time', $ops->get_chart_data_array("water_temperature", "log_time", $date));
-			//$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", $date));
-			//$ops->echo_graph_creation_function('rpi_chart', 'scatter', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
+			$ops->echo_graph_creation_function('waterlvl_chart', 'scatter', 'Water Level v Time', $ops->get_chart_data_array("water_level_max", "log_time", $date));
+			$ops->echo_graph_creation_function('rpi_chart', 'scatter', 'Raspberry Pi Readings (RPI) v Time', $ops->get_chart_data_array("rpi_temp", "log_time", $date));
 		  ?>
 
 			hide_all();

@@ -50,25 +50,22 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
       options: {
           scales: {
               xAxes: [{
-                type: 'time',
-                time: {
-                  parser: 'm:s.SSS',
-                  unit: 'seconds',
-                  unitStepSize: 5,
-                  min: '1:0.0',
-                  max: '2:0.0',
-                  displayFormats: {
-                    'seconds': 'm.s'
+                  type: 'linear',
+                  position: 'bottom',
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Time (hours)'
                   }
-                }
-              }]
-
-              ,
+              }],
               yAxes: [{
                   scaleLabel: {
                     display: true,
                     labelString: 'Temperature (°C)'
-                    }
+                  },
+                  ticks: {
+                    beginAtZero: true
+                  }
               }]
           }
       }
@@ -76,19 +73,17 @@ function create_chart_scatter (chart_id, graph_title, graph_headers, graph_data 
 }
 
 function filterTimeFormat(time) {
-	var str = time;
-  var res = str.split(":");
+  var time = time.split(":");
 
-  var hour = res[0] + ":";
-  var minute = res[1] + ".";
-  var second = res[2];
+  var hour   = parseInt(time[0]) * 3600;
+  var minute = parseInt(time[1]) * 60;
+  var second = parseInt(time[2]);
 
-  var time_str = hour.concat(minute);
-  var time_str = time_str.concat(second);
-
-  console.log(time_str);
-
-	return time_str;
+  var time_sec = hour + minute + second;
+  var time_hr = time_sec / 3600;
+  time = time_hr.toString();
+  
+	return time;
 }
 
 function hide_all() {
