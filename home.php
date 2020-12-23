@@ -1,7 +1,7 @@
 <?php
 include 'dbOps.php';
 $ops = new Ops();
-$ops->login();
+$ops->check_login();
 
 $usr = $_SESSION['user_data'];
 ?>

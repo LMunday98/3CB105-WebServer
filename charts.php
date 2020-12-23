@@ -1,10 +1,16 @@
 <?php
 include 'dbOps.php';
 $ops = new Ops();
-$ops->login();
+$ops->check_login();
 $usr = $_SESSION['user_data'];
 
 $date = date("Y-m-d");
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	$date = $_POST['datepicker'];
+  echo $date;
+}
+echo "yeet";
 ?>
 
 <!DOCTYPE HTML>
@@ -41,9 +47,11 @@ $date = date("Y-m-d");
 
           <hr />
 
-					<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-22' max='" . $date ."'>" ?>
-					<br><br>
-					<input id="submit" type="submit" value="submit" onclick="" />
+					<form action="" method="POST">
+						<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-22' max='" . date("Y-m-d") ."'>" ?>
+						<br><br>
+						<input id="submit" type="submit" value="submit" onclick="" />
+					</form>
 
 					<hr />
 
