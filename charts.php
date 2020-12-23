@@ -6,6 +6,7 @@ $ops->login();
 $usr = $_SESSION['user_data'];
 
 $graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
+$graph_d = json_encode(array(0, 10, 5, 2));
 ?>
 
 <!DOCTYPE HTML>
@@ -48,13 +49,17 @@ $graph_h = json_encode(array("Volvo", "BMW", "Toyota", "Merc"));
 
     </div>
 
+		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
+
 		<script>
 			var graph_headers = <?php echo $graph_h ?>;
+			var graph_data = <?php echo $graph_d ?>;
+			map_chart();
+			
 			if ('addEventListener' in window) {
 				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 				document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 			}
 		</script>
-		<script type="text/javascript" src="assets/js/chart_mapping.js"></script>
 	</body>
 </html>
