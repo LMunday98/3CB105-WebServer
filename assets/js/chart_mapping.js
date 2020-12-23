@@ -88,7 +88,7 @@ function filterTimeFormat(time) {
 
   console.log(time_str);
 
-	return time;
+	return time_str;
 }
 
 function hide_all() {
