@@ -21,19 +21,15 @@ $usr = $_SESSION['user_data'];
     <div id="wrapper">
 
       <!-- Main -->
-        <section id="main">
-          <header>
-            <h1>User Account<br>Management</h1>
-            <?php echo "<h3>Welcome, " . $usr['first_name'] . " User!</h3>"; ?>
-          </header>
-          <hr />
-          <input type="button" value="View" onclick="window.location='admin_view.php';" />
-					<input type="button" value="Create" onclick="window.location='admin_create.php';" />
-          <br><br>
-					<input type="button" value="Edit" onclick="window.location='admin_edit.php';" />
-					<input type="button" value="Delete" onclick="window.location='admin_delete.php';" />
-          <br><br>
-          <?php $ops->echo_admin_logout_button(); ?>
+			<section id="main"   style="width: 60%; max-width: 800px;">
+					<header>
+						<h1>Edit an account</h1>
+					</header>
+					<hr />
+					<input type="button" value="Back" onclick="window.location='admin_home.php';" />
+					<br><br>
+					<?php $ops->echo_admin_logout_button(); ?>
+					<hr />
         </section>
 
       <!-- Footer -->
