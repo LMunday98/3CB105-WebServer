@@ -21,7 +21,7 @@ $usr = $_SESSION['user_data'];
     <div id="wrapper">
 
       <!-- Main -->
-			<section id="main" style="width: 60%; max-width: 800px;">
+			<section id="main" style="width: 60%; max-width: 1024px;">
 					<header>
 						<h1>View user accounts</h1>
 					</header>

@@ -72,7 +72,13 @@ class Ops {
             echo "<td>" . $value . "</td>";
         }
         if ($this->get_username() == "Admin") {
-          echo "<td>Edit</td><td>Delete</td>";
+          echo "<td>";
+          $this->echo_button("Button", "Edit", "");
+          echo "</td>";
+
+          echo "<td>";
+          $this->echo_button("Button", "Delete", "");
+          echo "</td>";
         }
         echo "</tr>";
     }

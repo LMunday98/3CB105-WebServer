@@ -27,10 +27,8 @@ $usr = $_SESSION['user_data'];
           </header>
           <hr />
           <input type="button" value="View" onclick="window.location='admin_view.php';" />
-					<input type="button" value="Create" onclick="window.location='admin_create.php';" />
           <br><br>
-					<input type="button" value="Edit" onclick="window.location='admin_edit.php';" />
-					<input type="button" value="Delete" onclick="window.location='admin_delete.php';" />
+					<input type="button" value="Create" onclick="window.location='admin_create.php';" />
           <br><br>
           <?php $ops->echo_admin_logout_button(); ?>
         </section>
@@ -43,7 +41,7 @@ $usr = $_SESSION['user_data'];
         </footer>
 
     </div>
-		
+
 			<script>
 				if ('addEventListener' in window) {
 					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
