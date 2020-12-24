@@ -1,7 +1,7 @@
 <?php
 include '../assets/php/dbOps.php';
 $ops = new Ops();
-//$ops->check_admin();
+$ops->check_admin();
 
 $usr = $_SESSION['user_data'];
 ?>
@@ -34,7 +34,10 @@ $usr = $_SESSION['user_data'];
 					<?php
 					$table = "Users";
 					$search = $ops->create_search("user_id,first_name,last_name,user_name", $table, "");
+
+					echo '<form method="post" action="">';
           $ops->echo_table($table, $search);
+					echo '</form>';
           ?>
 
         </section>

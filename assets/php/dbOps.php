@@ -50,7 +50,6 @@ class Ops {
   }
 
   function create_header($data) {
-    echo "<tr>";
     while ($row = mysqli_fetch_assoc($data)) {
         foreach ($row as $field => $value) {
             if ($value == "password") {
@@ -73,11 +72,11 @@ class Ops {
         }
         if ($this->get_username() == "Admin") {
           echo "<td>";
-          $this->echo_button("Button", "Edit", "");
+          $this->echo_button("Edit:" . $value, "", "Submit", "Edit", "");
           echo "</td>";
 
           echo "<td>";
-          $this->echo_button("Button", "Delete", "");
+          $this->echo_button("Delete:" . $value, "", "Submit", "Delete", "");
           echo "</td>";
         }
         echo "</tr>";
@@ -115,7 +114,7 @@ class Ops {
   }
 
   function check_admin() {
-    if ($this->get_username() == "admin") {
+    if ($this->get_username() == "Admin") {
       $this->check_login();
     } else {
       $this->direct_to_page("../index.php");
@@ -145,16 +144,16 @@ class Ops {
 
   function echo_admin_logout_button() {
     $path = "window.location=`../assets/php/logout.php`";
-    $this->echo_button("button", "Logout", $path);
+    $this->echo_button("", "", "button", "Logout", $path);
   }
 
   function echo_logout_button() {
     $path = "window.location=`assets/php/logout.php`";
-    $this->echo_button("button", "Logout", $path);
+    $this->echo_button("", "", "button", "Logout", $path);
   }
 
-  function echo_button($type, $value, $path) {
-    echo "<input type='" . $type . "' value='" . $value . "' onclick='".$path."' />";
+  function echo_button($id, $name, $type, $value, $path) {
+    echo "<input type='" . $type . "' value='" . $value . "' onclick='".$path."' id='" . $id . "' name='" . $name . "' />";
   }
 
   function login() {

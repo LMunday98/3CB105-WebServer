@@ -1,7 +1,7 @@
 <?php
 include '../assets/php/dbOps.php';
 $ops = new Ops();
-//$ops->check_admin();
+$ops->check_admin();
 
 $usr = $_SESSION['user_data'];
 ?>
