@@ -24,7 +24,6 @@ $usr = $_SESSION['user_data'];
         <section id="main">
           <header>
             <h1>User Account<br>Management</h1>
-            <?php echo "<h3>Welcome, " . $usr['first_name'] . " User!</h3>"; ?>
           </header>
           <hr />
           <input type="button" value="View" onclick="window.location='admin_view.php';" />
@@ -44,10 +43,7 @@ $usr = $_SESSION['user_data'];
         </footer>
 
     </div>
-
-
-
-
+		
 			<script>
 				if ('addEventListener' in window) {
 					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });

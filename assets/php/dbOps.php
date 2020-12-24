@@ -59,6 +59,9 @@ class Ops {
             echo "<th>" . $this->format_header_names($value) . "</th>";
         }
     }
+    if ($this->get_username() == "Admin") {
+      echo "<th></th><th></th>";
+    }
     echo "</tr>";
   }
 
@@ -67,6 +70,9 @@ class Ops {
         echo "<tr>";
         foreach ($row as $field => $value) {
             echo "<td>" . $value . "</td>";
+        }
+        if ($this->get_username() == "Admin") {
+          echo "<td>Edit</td><td>Delete</td>";
         }
         echo "</tr>";
     }
@@ -97,9 +103,13 @@ class Ops {
     if($currentpage=="/" || $currentpage=="/index.php" || $currentpage=="/index" || $currentpage=="" ) { return True; }
   }
 
-  function check_admin() {
+  function get_username() {
     $usr = $_SESSION['user_data'];
-    if ($usr['user_name'] == "admin") {
+    return $usr['user_name'];
+  }
+
+  function check_admin() {
+    if ($this->get_username() == "admin") {
       $this->check_login();
     } else {
       $this->direct_to_page("../index.php");
@@ -129,16 +139,16 @@ class Ops {
 
   function echo_admin_logout_button() {
     $path = "window.location=`../assets/php/logout.php`";
-    $this->echo_logout($path);
+    $this->echo_button("button", "Logout", $path);
   }
 
   function echo_logout_button() {
     $path = "window.location=`assets/php/logout.php`";
-    $this->echo_logout($path);
+    $this->echo_button("button", "Logout", $path);
   }
 
-  function echo_logout($path) {
-    echo "<input type='button' value='Logout' onclick='".$path."' />";
+  function echo_button($type, $value, $path) {
+    echo "<input type='" . $type . "' value='" . $value . "' onclick='".$path."' />";
   }
 
   function login() {
