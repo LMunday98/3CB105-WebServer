@@ -30,6 +30,13 @@ $usr = $_SESSION['user_data'];
 					<br><br>
 					<?php $ops->echo_admin_logout_button(); ?>
 					<hr />
+
+					<?php
+					$table = "Users";
+					$search = $ops->create_search("user_id,first_name,last_name,user_name", $table, "");
+          $ops->echo_table($table, $search);
+          ?>
+
         </section>
 
       <!-- Footer -->

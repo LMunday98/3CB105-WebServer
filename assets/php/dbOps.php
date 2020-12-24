@@ -53,6 +53,9 @@ class Ops {
     echo "<tr>";
     while ($row = mysqli_fetch_assoc($data)) {
         foreach ($row as $field => $value) {
+            if ($value == "password") {
+              break;
+            }
             echo "<th>" . $this->format_header_names($value) . "</th>";
         }
     }
