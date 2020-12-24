@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="wrapper">
 
       <!-- Main -->
-        <section id="main">
+        <section id="main"   style="width: 60%; max-width: 800px;">
           <header>
             <h1>Data log</h1>
           </header>
@@ -44,6 +44,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					</form>
 
 					<hr />
+
+					<h2>Currently showing data from: <?php echo $date; ?></h2>
 
           <?php
           $ops->echo_table("Data", $date);
