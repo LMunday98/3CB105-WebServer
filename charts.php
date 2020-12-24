@@ -1,5 +1,5 @@
 <?php
-include 'dbOps.php';
+include 'assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_login();
 $usr = $_SESSION['user_data'];
@@ -34,12 +34,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
           <input type="button" value="Home" onclick="window.location='home.php';" />
           <br><br>
-          <input type="button" value="Logout" onclick="window.location='logout.php';" />
+          <?php $ops->echo_logout_button(); ?>
 
           <hr />
 
 					<form action="" method="POST">
-						<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-22' max='" . date("Y-m-d") ."'>" ?>
+						<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-23' max='" . date("Y-m-d") ."'>" ?>
 						<br><br>
 						<input id="submit" type="submit" value="submit" onclick="" />
 					</form>

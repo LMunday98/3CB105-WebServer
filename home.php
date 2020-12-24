@@ -1,5 +1,5 @@
 <?php
-include 'dbOps.php';
+include 'assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_login();
 
@@ -31,7 +31,7 @@ $usr = $_SESSION['user_data'];
           <br><br>
           <input type="button" value="Data Log" onclick="window.location='datalog.php';" />
           <br><br>
-          <input type="button" value="Logout" onclick="window.location='logout.php';" />
+          <?php $ops->echo_logout_button(); ?>
         </section>
 
       <!-- Footer -->

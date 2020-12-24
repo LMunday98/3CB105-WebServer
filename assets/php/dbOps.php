@@ -116,6 +116,11 @@ class Ops {
     header("location: " . $url . "");
   }
 
+  function echo_logout_button() {
+    $path = "window.location=`assets/php/logout.php`";
+    echo "<input type='button' value='Logout' onclick='".$path."' />";
+  }
+
   function login() {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       $given_username = $this->format_str($_POST['username']);
