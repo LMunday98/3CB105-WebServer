@@ -48,8 +48,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<h2>Currently showing data from: <?php echo $date; ?></h2>
 
           <?php
-          $ops->echo_table("Data", $date);
-           ?>
+					$table = "Data";
+					$search = $ops->create_search("*", $table, " WHERE log_date='" . $date . "'");
+          $ops->echo_table($table, $search);
+          ?>
 
         </section>
 

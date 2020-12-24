@@ -54,6 +54,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 					<hr />
 
+					<h2>Currently showing charts from: <?php echo $date; ?></h2>
+
 					<div>
 						<canvas id="temperature_chart" class="hideable" width="400px" height="400px"></canvas>
 						<canvas id="waterlvl_chart" class="hideable" width="400px" height="400px"></canvas>
