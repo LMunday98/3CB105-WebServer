@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<hr />
 
           <?php
-          $ops->echo_table("Data");
+          $ops->echo_table("Data", $date);
            ?>
 
         </section>

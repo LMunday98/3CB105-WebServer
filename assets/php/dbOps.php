@@ -36,14 +36,14 @@ class Ops {
     return array(json_encode($x_array), json_encode($y_array));
   }
 
-  function echo_table($table) {
+  function echo_table($table, $date) {
     echo "<table style='border: 1px solid black; width: 100%;'>";
 
     $search = $this->create_header_search($table);
     $result = $this->search_db($search);
     $this->create_header($result);
 
-    $search = $this->create_search("*", $table, "");
+    $search = $this->create_search("*", $table, " WHERE log_date='" . $date . "'");
     $result = $this->search_db($search);
     $this->create_row($result);
 
