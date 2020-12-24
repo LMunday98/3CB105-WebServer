@@ -1,7 +1,7 @@
 <?php
-include 'assets/php/dbOps.php';
+include '../assets/php/dbOps.php';
 $ops = new Ops();
-$ops->check_login();
+//$ops->check_admin();
 
 $usr = $_SESSION['user_data'];
 ?>
@@ -12,9 +12,9 @@ $usr = $_SESSION['user_data'];
 		<title>FMS</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="icon" href="images/icon.svg">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<link rel="icon" href="../images/icon.svg">
 	</head>
 	<body class="is-loading">
 
@@ -23,15 +23,17 @@ $usr = $_SESSION['user_data'];
       <!-- Main -->
         <section id="main">
           <header>
-            <h1>FMS Home screen</h1>
-            <?php echo "<h3>Welcome, " . $usr['first_name'] . " " . $usr['last_name'] . "!</h3>"; ?>
+            <h1>User Account<br>Management</h1>
+            <?php echo "<h3>Welcome, " . $usr['first_name'] . " User!</h3>"; ?>
           </header>
           <hr />
-          <input type="button" value="Charts" onclick="window.location='charts.php';" />
+          <input type="button" value="View" onclick="window.location='admin_home.php';" />
+					<input type="button" value="Create" onclick="window.location='admin_home.php';" />
           <br><br>
-          <input type="button" value="Data Log" onclick="window.location='datalog.php';" />
+					<input type="button" value="Edit" onclick="window.location='admin_home.php';" />
+					<input type="button" value="Delete" onclick="window.location='admin_home.php';" />
           <br><br>
-          <?php $ops->echo_logout_button(); ?>
+          <?php $ops->echo_admin_logout_button(); ?>
         </section>
 
       <!-- Footer -->

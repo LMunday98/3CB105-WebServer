@@ -95,6 +95,15 @@ class Ops {
     if($currentpage=="/" || $currentpage=="/index.php" || $currentpage=="/index" || $currentpage=="" ) { return True; }
   }
 
+  function check_admin() {
+    $usr = $_SESSION['user_data'];
+    if ($usr['user_name'] == "admin") {
+      $this->check_login();
+    } else {
+      $this->direct_to_page("../index.php");
+    }
+  }
+
   function check_login() {
     if ((!$this->is_index_page()) && (!isset($_SESSION['logged_in']))) {
         $this->direct_to_page("index.php");
@@ -116,8 +125,17 @@ class Ops {
     header("location: " . $url . "");
   }
 
+  function echo_admin_logout_button() {
+    $path = "window.location=`../assets/php/logout.php`";
+    $this->echo_logout($path);
+  }
+
   function echo_logout_button() {
     $path = "window.location=`assets/php/logout.php`";
+    $this->echo_logout($path);
+  }
+
+  function echo_logout($path) {
     echo "<input type='button' value='Logout' onclick='".$path."' />";
   }
 
@@ -132,7 +150,11 @@ class Ops {
         $_SESSION['logged_in'] = True;
         $_SESSION['user_data'] = mysqli_fetch_assoc($result);
 
-        $this->direct_to_page("home.php");
+        if ($given_username == "Admin") {
+          $this->direct_to_page("admin/admin_home.php");
+        } else {
+          $this->direct_to_page("home.php");
+        }
       } else {
         $this->direct_to_page("index.php");
       }
