@@ -2,6 +2,15 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
+
+foreach($_POST as $id => $type) {
+	if ($type == "Edit") {
+		echo " edit " . $id;
+	}
+	if ($type == "Delete") {
+		$ops->del_from_table("Users", "user_id", $id);
+	}
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -23,19 +32,6 @@ $ops->check_admin();
 					<header>
 						<h1>View user accounts</h1>
 					</header>
-
-					<?php
-
-
-					foreach($_POST as $id => $type) {
-						if ($type == "Edit") {
-							echo " edit " . $id;
-						}
-						if ($type == "Delete") {
-							echo " del " . $id;
-						}
-					}
-					?>
 
 					<hr />
 					<input type="button" value="Back" onclick="window.location='admin_home.php';" />

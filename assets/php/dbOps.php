@@ -73,11 +73,11 @@ class Ops {
         }
         if ($this->get_username() == "Admin") {
           echo "<td>";
-          $this->echo_button("edit_" . $row_counter, $row_counter, "submit", "Edit", "crud(`edit`, `" . $value . "`)");
+          $this->echo_button("edit_" . $row_counter, $row_counter, "submit", "Edit", "");
           echo "</td>";
 
           echo "<td>";
-          $this->echo_button("delete_" . $row_counter, $row_counter, "submit", "Delete", "crud(`delete`, `" . $value . "`)");
+          $this->echo_button("delete_" . $row_counter, $row_counter, "submit", "Delete", "");
           echo "</td>";
         }
         echo "</tr>";
@@ -101,8 +101,14 @@ class Ops {
   function search_db($search_params) {
     $conn = $this->get_conn();
     $sql = "SELECT " . $search_params["specifier"] ." FROM " . $search_params["table"] . $search_params["cond"];
-    $result = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
+    $result = mysqli_query($conn, $sql);
     return $result;
+  }
+
+  function del_from_table($table, $col_header, $id) {
+    $conn = $this->get_conn();
+    $sql = "DELETE FROM " . $table . " WHERE " . $col_header . "=" . $id;
+    mysqli_query($conn, $sql);
   }
 
   function get_num_rows($table) {
