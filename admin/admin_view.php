@@ -2,8 +2,6 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
-
-$usr = $_SESSION['user_data'];
 ?>
 
 <!DOCTYPE HTML>
@@ -25,6 +23,20 @@ $usr = $_SESSION['user_data'];
 					<header>
 						<h1>View user accounts</h1>
 					</header>
+
+					<?php
+
+
+					foreach($_POST as $id => $type) {
+						if ($type == "Edit") {
+							echo " edit " . $id;
+						}
+						if ($type == "Delete") {
+							echo " del " . $id;
+						}
+					}
+					?>
+
 					<hr />
 					<input type="button" value="Back" onclick="window.location='admin_home.php';" />
 					<br><br>
@@ -36,7 +48,7 @@ $usr = $_SESSION['user_data'];
 					$search = $ops->create_search("user_id,first_name,last_name,user_name", $table, "");
 
 					echo '<form method="post" action="">';
-          $ops->echo_table($table, $search);
+          	$ops->echo_table($table, $search);
 					echo '</form>';
           ?>
 
@@ -51,8 +63,7 @@ $usr = $_SESSION['user_data'];
 
     </div>
 
-
-
+			<script type="text/javascript" src="../assets/js/admin_crud_handler.js"></script>
 
 			<script>
 				if ('addEventListener' in window) {

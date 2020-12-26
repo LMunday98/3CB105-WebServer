@@ -65,6 +65,7 @@ class Ops {
   }
 
   function create_row($data) {
+    $row_counter = 1;
     while ($row = mysqli_fetch_assoc($data)) {
         echo "<tr>";
         foreach ($row as $field => $value) {
@@ -72,14 +73,15 @@ class Ops {
         }
         if ($this->get_username() == "Admin") {
           echo "<td>";
-          $this->echo_button("Edit:" . $value, "", "Submit", "Edit", "");
+          $this->echo_button("edit_" . $row_counter, $row_counter, "submit", "Edit", "crud(`edit`, `" . $value . "`)");
           echo "</td>";
 
           echo "<td>";
-          $this->echo_button("Delete:" . $value, "", "Submit", "Delete", "");
+          $this->echo_button("delete_" . $row_counter, $row_counter, "submit", "Delete", "crud(`delete`, `" . $value . "`)");
           echo "</td>";
         }
         echo "</tr>";
+        $row_counter++;
     }
   }
 
@@ -101,6 +103,16 @@ class Ops {
     $sql = "SELECT " . $search_params["specifier"] ." FROM " . $search_params["table"] . $search_params["cond"];
     $result = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
     return $result;
+  }
+
+  function get_num_rows($table) {
+
+    $search = $this->create_search("count(1)", $table, "");
+    $result = $this->search_db($search);
+
+    $row = mysqli_fetch_array($result);
+
+    return $row[0];
   }
 
   function is_index_page() {
