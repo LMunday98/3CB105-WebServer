@@ -2,15 +2,6 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
-
-foreach($_POST as $id => $type) {
-	if ($type == "Edit") {
-		echo " edit " . $id;
-	}
-	if ($type == "Delete") {
-		$ops->del_from_table("Users", "user_id", $id);
-	}
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -43,10 +34,18 @@ foreach($_POST as $id => $type) {
 					$table = "Users";
 					$search = $ops->create_search("user_id,first_name,last_name,user_name", $table, "");
 
-					echo '<form method="post" action="">';
+					// user table
+					echo '<form method="post" action="" class="user_table">';
           	$ops->echo_table($table, $search);
 					echo '</form>';
+
+					// edit form
           ?>
+
+					<div class="edit_section" style="display: none">
+						<p>some edit</p>
+					</div>
+
 
         </section>
 
@@ -59,14 +58,27 @@ foreach($_POST as $id => $type) {
 
     </div>
 
-			<script type="text/javascript" src="../assets/js/admin_crud_handler.js"></script>
-
 			<script>
 				if ('addEventListener' in window) {
 					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 				}
 			</script>
+			<?php
+
+			foreach($_POST as $id => $type) {
+				if ($type == "Edit") {
+					echo '<script type="text/javascript" src="../assets/js/admin_ops.js"></script>';
+					echo "<script>edit_users(" . $id . ");</script>";
+				}
+				if ($type == "Delete") {
+					$ops->del_from_table("Users", "user_id", $id);
+				}
+			}
+
+			 ?>
+
 
 	</body>
+
 </html>
