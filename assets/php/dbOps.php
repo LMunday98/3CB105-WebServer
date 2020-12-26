@@ -70,7 +70,8 @@ class Ops {
         foreach ($row as $field => $value) {
             echo "<td>" . $value . "</td>";
         }
-        if ($this->get_username() == "Admin") {
+        $row_username = $row['user_name'];
+        if (($this->get_username() == "Admin") && ($row_username != "Admin")) {
           $row_id = $row['user_id'];
           echo "<td>";
           $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "");
@@ -79,6 +80,8 @@ class Ops {
           echo "<td>";
           $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm(`Are you sure?`)");
           echo "</td>";
+        } else {
+          echo "<td></td><td></td>";
         }
         echo "</tr>";
     }
