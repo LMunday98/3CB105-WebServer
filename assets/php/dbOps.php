@@ -65,23 +65,22 @@ class Ops {
   }
 
   function create_row($data) {
-    $row_counter = 1;
     while ($row = mysqli_fetch_assoc($data)) {
         echo "<tr>";
         foreach ($row as $field => $value) {
             echo "<td>" . $value . "</td>";
         }
         if ($this->get_username() == "Admin") {
+          $row_id = $row['user_id'];
           echo "<td>";
-          $this->echo_button("edit_" . $row_counter, $row_counter, "submit", "Edit", "");
+          $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "return confirm('Are you sure?')");
           echo "</td>";
 
           echo "<td>";
-          $this->echo_button("delete_" . $row_counter, $row_counter, "submit", "Delete", "");
+          $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm('Are you sure?')");
           echo "</td>";
         }
         echo "</tr>";
-        $row_counter++;
     }
   }
 
