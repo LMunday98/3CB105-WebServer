@@ -73,11 +73,11 @@ class Ops {
         if ($this->get_username() == "Admin") {
           $row_id = $row['user_id'];
           echo "<td>";
-          $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "return confirm('Are you sure?')");
+          $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "");
           echo "</td>";
 
           echo "<td>";
-          $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm('Are you sure?')");
+          $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm(`Are you sure?`)");
           echo "</td>";
         }
         echo "</tr>";
