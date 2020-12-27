@@ -116,6 +116,13 @@ class Ops {
     mysqli_query($conn, $sql);
   }
 
+  function create_account($post) {
+    $conn = $this->get_conn();
+    $sql = "INSERT INTO Users VALUES (NULL, 'f_name', 'l_name', 'u_name', 'p_word')";
+    mysqli_query($conn, $sql);
+    $this->direct_to_page("admin_home.php");
+  }
+
   function get_num_rows($table) {
 
     $search = $this->create_search("count(1)", $table, "");

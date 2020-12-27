@@ -3,10 +3,11 @@ include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
 
-$usr = $_SESSION['user_data'];
-
-
-
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	if ($_POST['password'] == $_POST['confirm_password']) {
+		$ops->create_account($_POST);
+	}
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -33,6 +34,29 @@ $usr = $_SESSION['user_data'];
 					<br><br>
 					<?php $ops->echo_admin_logout_button(); ?>
 					<hr />
+
+					<form method="post" action="">
+						<div class="field">
+							<input type="text" name="first_name" id="first_name" placeholder="Forename" required/>
+						</div>
+							<div class="field">
+								<input type="text" name="last_name" id="last_name" placeholder="Surname" required/>
+							</div>
+						<div class="field">
+							<input type="text" name="username" id="user_name" placeholder="Username" required/>
+						</div>
+						<div class="field">
+							<input type="password" name="password" id="password" placeholder="Password" required/>
+						</div>
+						<div class="field">
+							<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" oninput="check(this)" required/>
+						</div>
+						<ul class="actions">
+							<!--<li><a href="#" class="button">Login</a></li>-->
+							<li><input type="submit" name="submit" id="submit" placeholder="submit" value=" Submit "/></li>
+						</ul>
+					</form>
+
         </section>
 
       <!-- Footer -->
@@ -45,7 +69,16 @@ $usr = $_SESSION['user_data'];
     </div>
 
 
-
+		<script language='javascript' type='text/javascript'>
+			function check(input) {
+					if (input.value != document.getElementById('password').value) {
+							input.setCustomValidity('Password Must be Matching.');
+					} else {
+							// input is valid -- reset the error message
+							input.setCustomValidity('');
+					}
+			}
+		</script>
 
 			<script>
 				if ('addEventListener' in window) {
