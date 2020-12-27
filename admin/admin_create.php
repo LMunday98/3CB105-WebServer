@@ -24,7 +24,7 @@ $ops->check_admin();
 						<h1>Create an account</h1>
 					</header>
 					<hr />
-					<input type="button" value="Back" onclick="window.location='admin_home.php';" />
+					<input type="button" value="Home" onclick="window.location='admin_home.php';" />
 					<br><br>
 					<?php $ops->echo_admin_logout_button(); ?>
 					<hr />

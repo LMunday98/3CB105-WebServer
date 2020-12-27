@@ -10,4 +10,9 @@ function change_dispaly(class_name, show_type) {
   for(var i = 0; i < divsToHide.length; i++){
       divsToHide[i].style.display = show_type; // depending on what you're doing
   }
+
+  function view_users() {
+    change_dispaly("user_table", "inline");
+    change_dispaly("edit_section", "none");
+  }
 }

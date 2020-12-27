@@ -30,7 +30,7 @@ if (isset($_POST["edit_submit"])) {
 					</header>
 
 					<hr />
-					<input type="button" value="Back" onclick="window.location='admin_home.php';" />
+					<input type="button" value="Home" onclick="window.location='admin_home.php';" />
 					<br><br>
 					<?php $ops->echo_admin_logout_button(); ?>
 					<hr />
@@ -65,9 +65,13 @@ if (isset($_POST["edit_submit"])) {
 						</div>
 						<ul class="actions">
 							<li><input type="submit" name="edit_submit" id="submit" placeholder="submit" value=" Submit "/></li>
+							<li><input type="button" value="Back" onclick="window.location='admin_view.php';" /></li>
 						</ul>
 
 					 </form>
+
+
+
 					</div>
 
         </section>
