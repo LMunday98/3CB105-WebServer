@@ -112,7 +112,7 @@ function create_chart_scatter (chart_id, graph_title, y_label, graph_headers, gr
 
   var times = graph_headers;
   var data = graph_data
-  var divisions = 6;
+  var divisions = 4;
   data_to_plot = calc_avg_time_data(times, data, divisions);
 
   var chart_data = {

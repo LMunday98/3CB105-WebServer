@@ -70,18 +70,21 @@ class Ops {
         foreach ($row as $field => $value) {
             echo "<td>" . $value . "</td>";
         }
-        $row_username = $row['user_name'];
-        if (($this->get_username() == "Admin") && ($row_username != "Admin")) {
-          $row_id = $row['user_id'];
-          echo "<td>";
-          $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "");
-          echo "</td>";
 
-          echo "<td>";
-          $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm(`Are you sure?`)");
-          echo "</td>";
-        } else {
-          echo "<td></td><td></td>";
+        if ($this->get_username() == "Admin") {
+          $row_username = $row['user_name'];
+          if ($row_username != "Admin") {
+            $row_id = $row['user_id'];
+            echo "<td>";
+            $this->echo_button("edit_" . $row_id, $row_id, "submit", "Edit", "");
+            echo "</td>";
+
+            echo "<td>";
+            $this->echo_button("delete_" . $row_id, $row_id, "submit", "Delete", "return confirm(`Are you sure?`)");
+            echo "</td>";
+          } else {
+            echo "<td></td><td></td>";
+          }
         }
         echo "</tr>";
     }
