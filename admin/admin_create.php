@@ -2,12 +2,6 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-	if ($_POST['password'] == $_POST['confirm_password']) {
-		$ops->create_account($_POST);
-	}
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -34,6 +28,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 					<br><br>
 					<?php $ops->echo_admin_logout_button(); ?>
 					<hr />
+
+					<?php
+
+					if($_SERVER["REQUEST_METHOD"] == "POST") {
+						if ($_POST['password'] == $_POST['confirm_password']) {
+							$search = $ops->create_search("*", "Users", " WHERE user_name='" . $_POST['user_name'] . "'");
+							if (!$ops->does_usr_exist($search)) {
+								$ops->create_account($_POST);
+							} else {
+									echo "<h2>User name is already taken! Please enter another.</h2>";
+							}
+						}
+					}
+
+					 ?>
 
 					<form method="post" action="">
 						<div class="field">
