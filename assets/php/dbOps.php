@@ -114,6 +114,7 @@ class Ops {
     $conn = $this->get_conn();
     $sql = "DELETE FROM " . $table . " WHERE " . $col_header . "=" . $id;
     mysqli_query($conn, $sql);
+    $this->direct_to_page("admin_view.php");
   }
 
   function create_account($post) {
