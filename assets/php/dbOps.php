@@ -127,12 +127,14 @@ class Ops {
     foreach($post as $id => $type) {
       break;
     }
+    $_SESSION['edit_id'] = $id;
     $search = $this->create_search("first_name, last_name, user_name", "Users", " WHERE user_id='" . $id . "'");
     $result = $this->search_db($search);
 
     while ($row = mysqli_fetch_assoc($result)) {
+      echo "<h2>Currently editing details for: " . $row['first_name'] . " " . $row['last_name'] . "</h2><br>";
         foreach ($row as $field => $value) {
-            echo $field . ": " . $value . "<br>";
+            echo "<div class='field'><input type='text' name='" . $field . "' id='" . $field . "' value='" . $value . "' placeholder='" . $this->format_header_names($field) . "' required/></div>";
         }
     }
   }

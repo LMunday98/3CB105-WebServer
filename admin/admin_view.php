@@ -2,6 +2,11 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
+
+if (isset($_POST["edit_submit"])) {
+	$ops->del_from_table("Users", "user_id", $_SESSION['edit_id']);
+	$ops->create_account($_POST);
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -43,6 +48,7 @@ $ops->check_admin();
           ?>
 
 					<div class="edit_section" style="display: none">
+						<form method="post" action="">
 						<?php
 
 						if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -50,8 +56,19 @@ $ops->check_admin();
 						}
 
 						 ?>
-					</div>
 
+						<div class="field">
+							<input type="password" name="password" id="password" placeholder="New Password" required/>
+						</div>
+						<div class="field">
+							<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" oninput="check(this)" required/>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" name="edit_submit" id="submit" placeholder="submit" value=" Submit "/></li>
+						</ul>
+
+					 </form>
+					</div>
 
         </section>
 
