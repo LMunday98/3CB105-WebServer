@@ -2,11 +2,6 @@
 include '../assets/php/dbOps.php';
 $ops = new Ops();
 $ops->check_admin();
-
-if (isset($_POST["edit_submit"])) {
-	$ops->del_from_table("Users", "user_id", $_SESSION['edit_id']);
-	$ops->create_account($_POST);
-}
 ?>
 
 <!DOCTYPE HTML>
@@ -50,6 +45,17 @@ if (isset($_POST["edit_submit"])) {
 					<div class="edit_section" style="display: none">
 						<form method="post" action="">
 						<?php
+
+						if (isset($_POST["edit_submit"])) {
+							$search = $ops->create_search("*", "Users", " WHERE user_name='" . $_POST['user_name'] . "'");
+							if (!$ops->does_usr_exist($search)) {
+								$ops->del_from_table("Users", "user_id", $_SESSION['edit_id']);
+								$ops->create_account($_POST);
+							} else {
+									echo "<h2>User name is already taken! Please enter another.</h2>";
+							}
+						}
+
 
 						if($_SERVER["REQUEST_METHOD"] == "POST") {
 							$ops->edit_account($_POST);
