@@ -118,7 +118,7 @@ class Ops {
 
   function create_account($post) {
     $conn = $this->get_conn();
-    $sql = "INSERT INTO Users VALUES (NULL, 'f_name', 'l_name', 'u_name', 'p_word')";
+    $sql = "INSERT INTO Users VALUES (NULL, '" . $post['first_name'] . "', '" . $post['last_name'] . "', '" . $post['user_name'] . "', '" . $post['password'] . "')";
     mysqli_query($conn, $sql);
     $this->direct_to_page("admin_home.php");
   }

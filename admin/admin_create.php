@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 								<input type="text" name="last_name" id="last_name" placeholder="Surname" required/>
 							</div>
 						<div class="field">
-							<input type="text" name="username" id="user_name" placeholder="Username" required/>
+							<input type="text" name="user_name" id="user_name" placeholder="Username" required/>
 						</div>
 						<div class="field">
 							<input type="password" name="password" id="password" placeholder="Password" required/>
