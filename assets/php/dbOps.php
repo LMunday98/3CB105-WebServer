@@ -119,7 +119,7 @@ class Ops {
 
   function create_account($post) {
     $conn = $this->get_conn();
-    $sql = "INSERT INTO Users VALUES (NULL, '" . $post['first_name'] . "', '" . $post['last_name'] . "', '" . $post['user_name'] . "', '" . $post['password'] . "')";
+    $sql = "INSERT INTO Users VALUES (NULL, '" . $post['first_name'] . "', '" . $post['last_name'] . "', '" . $post['user_name'] . "', '" . $this->create_hash($post['password']) . "')";
     mysqli_query($conn, $sql);
     $this->direct_to_page("admin_home.php");
   }
@@ -203,24 +203,33 @@ class Ops {
     echo "<input type='" . $type . "' value='" . $value . "' onclick='".$path."' id='" . $id . "' name='" . $name . "' />";
   }
 
+  function create_hash($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
+  }
+
+  function sucessful_login($data) {
+    $_SESSION['logged_in'] = True;
+    $_SESSION['user_data'] = $data;
+
+    if ($given_username == "Admin") {
+      $this->direct_to_page("admin/admin_home.php");
+    } else {
+      $this->direct_to_page("home.php");
+    }
+  }
+
   function login() {
     if($_SERVER["REQUEST_METHOD"] == "POST") {
       $given_username = $this->format_str($_POST['username']);
       $given_password = $this->format_str($_POST['password']);
-      $search = $this->create_search("*", "Users", " WHERE user_name='" . $given_username . "' and password='" . $given_password . "'");
+      $search = $this->create_search("*", "Users", " WHERE user_name='" . $given_username . "'");
+      $result = $this->search_db($search);
 
-      if($this->does_usr_exist($search)) {
-        $result = $this->search_db($search);
-        $_SESSION['logged_in'] = True;
-        $_SESSION['user_data'] = mysqli_fetch_assoc($result);
-
-        if ($given_username == "Admin") {
-          $this->direct_to_page("admin/admin_home.php");
-        } else {
-          $this->direct_to_page("home.php");
+      while ($row = mysqli_fetch_assoc($result)) {
+        $password_hash = $row['password'];
+        if (password_verify($given_password, $password_hash)) {
+          $this->sucessful_login($row);
         }
-      } else {
-        $this->direct_to_page("index.php");
       }
     }
   }
