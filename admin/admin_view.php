@@ -43,7 +43,13 @@ $ops->check_admin();
           ?>
 
 					<div class="edit_section" style="display: none">
-						<p>some edit</p>
+						<?php
+
+						if($_SERVER["REQUEST_METHOD"] == "POST") {
+							$ops->edit_account($_POST);
+						}
+
+						 ?>
 					</div>
 
 

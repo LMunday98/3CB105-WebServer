@@ -123,6 +123,20 @@ class Ops {
     $this->direct_to_page("admin_home.php");
   }
 
+  function edit_account($post) {
+    foreach($post as $id => $type) {
+      break;
+    }
+    $search = $this->create_search("first_name, last_name, user_name", "Users", " WHERE user_id='" . $id . "'");
+    $result = $this->search_db($search);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        foreach ($row as $field => $value) {
+            echo $field . ": " . $value . "<br>";
+        }
+    }
+  }
+
   function get_num_rows($table) {
 
     $search = $this->create_search("count(1)", $table, "");
