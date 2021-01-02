@@ -210,8 +210,10 @@ class Ops {
   function sucessful_login($data) {
     $_SESSION['logged_in'] = True;
     $_SESSION['user_data'] = $data;
+    $username = $data['user_name'];
+    echo $username;
 
-    if ($given_username == "Admin") {
+    if ($username == "Admin") {
       $this->direct_to_page("admin/admin_home.php");
     } else {
       $this->direct_to_page("home.php");
