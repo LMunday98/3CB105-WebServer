@@ -4,7 +4,7 @@ $ops = new Ops();
 $ops->check_login();
 $usr = $_SESSION['user_data'];
 
-$date = date("Y-m-d");
+$date = '2021-01-05';
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$date = $_POST['datepicker'];
 }
@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <hr />
 
 					<form action="" method="POST">
-						<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-23' max='" . date("Y-m-d") ."'>" ?>
+						<?php echo "<input type='date' id='datepicker' name='datepicker' value='" . $date . "' min='2020-12-23' max='2021-01-05'>" ?>
 						<br><br>
 						<input id="submit" type="submit" value="submit" onclick="" />
 					</form>

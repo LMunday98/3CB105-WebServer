@@ -1,6 +1,6 @@
 <?php
 function establish_connection() {
-  $ip = '192.168.0.185:3306';
+  $ip = '18.134.189.230:3306';
   $usr = 'admin_remote';
   $pass = 'admin';
   $db = '3CB105';
